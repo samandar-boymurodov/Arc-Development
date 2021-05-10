@@ -8,5 +8,13 @@ export const Theme = createMuiTheme({
         secondary: {
             main: "#fb8c00"
         }
+    },
+    typography: {
+        tab: {
+            fontFamily: "Raleway",
+            textTransform: "none",
+            fontWeight: "700",
+            fontSize: "1rem"
+        }
     }
 })
