@@ -6,6 +6,7 @@ function App() {
   return (
     <ThemeProvider theme={Theme}>
       <Header />
+      Hello!
     </ThemeProvider>  
   );
 }
