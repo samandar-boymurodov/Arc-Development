@@ -14,7 +14,10 @@ import { MenuItem,
         useMediaQuery, 
         useTheme,
         SwipeableDrawer,
-        IconButton} from '@material-ui/core'
+        IconButton,
+        ListItem,
+        List,
+        ListItemText } from '@material-ui/core'
 
 import logo from '../../assets/logo.svg'
 import { Links } from '../Utils/Links'
@@ -34,6 +37,9 @@ function ElevationScroll(props) {
 }
 
 const useStyles = makeStyles((theme) => ({
+    appBar: {
+        zIndex: theme.zIndex.modal+1
+    },
     barMargin: {
         ...theme.mixins.toolbar,
         marginBottom: "1rem",
@@ -53,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     },
     tab: {
         ...theme.typography.tab,
-        minWidth: 10,
+        minWidth: 40,
         marginLeft: "25px"
     },
     button: {
@@ -82,8 +88,25 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: "auto"
     },
     menuIcon: {
-        height: "40px",
-        width: "40px"
+        height: "2.5rem",
+        width: "2.5rem"
+    },
+    drawerPaper: {
+        backgroundColor: theme.palette.primary.main
+    },
+    drawerItem: {
+        ...theme.typography.tab,
+        color: "white",
+        opacity: "0.7"
+    },
+    estimate: {
+        backgroundColor: theme.palette.secondary.main,
+        "&:hover": {
+            backgroundColor: theme.palette.secondary.light
+        }
+    },
+    drawerSelectedItem: {
+        opacity: "1"
     }
 }))
 
@@ -141,12 +164,40 @@ export default function Header() {
             case Links.contact:
                 setTab(4)
                 break;
+            case Links.estimate:
+                setTab(5)
+                break;
             default:
                 break;
         }
     }, [setTab, history.location.pathname, serviceOp, tab])
 
     const classes = useStyles()
+
+    const routes = [{
+            label: "Home",
+            link: Links.home
+        },
+        {
+            label: "Services",
+            link: Links.services,
+            aria_controls: "simple-menu",
+            aria_haspopup: "true",
+            onMouseMove: handleClick
+        },
+        {
+            label: "The Revolution",
+            link: Links.revolution
+        },
+        {
+            label: "About Us",
+            link: Links.about
+        },
+        {
+            label: "Contact Us",
+            link: Links.contact
+        }
+    ]
 
     const tabs = (
         <>
@@ -155,39 +206,18 @@ export default function Header() {
             value={tab}
             classes={{root: classes.tabContainer}}
             indicatorColor="primary">
-            <Tab 
-                className={classes.tab} 
-                label="Home"
-                component={Link}
-                to={Links.home}
+            {routes.map((route, index) => (
+                <Tab
+                    key={index}
+                    className={classes.tab}
+                    label={route.label}
+                    component={Link}
+                    to={route.link}
+                    aria-controls={route.aria_controls}
+                    aria-haspopup={route.aria_haspopup}
+                    onMouseMove={route.onMouseMove}
                 />
-            <Tab 
-                className={classes.tab} 
-                label="Services"
-                component={Link}
-                to={Links.services}
-                aria-controls="simple-menu" 
-                aria-haspopup="true"
-                onMouseMove={handleClick}
-                />
-            <Tab 
-                className={classes.tab} 
-                label="The Revolution"
-                component={Link}
-                to={Links.revolution}
-                />
-            <Tab 
-                className={classes.tab} 
-                label="About Us"
-                component={Link}
-                to={Links.about}
-                />
-            <Tab 
-                className={classes.tab} 
-                label="Contact Us"
-                component={Link}
-                to={Links.contact}
-                />
+            ))}
         </Tabs>
         <Button 
             variant="contained"
@@ -200,6 +230,7 @@ export default function Header() {
             Free Estimate
         </Button>
         <Menu
+            style={{zIndex: "1302"}}
             id="simple-menu"
             anchorEl={anchorEl}
             keepMounted
@@ -250,15 +281,49 @@ export default function Header() {
                 open={!!drawerOpen}
                 onClose={toggleDrawer(false)}
                 onOpen={toggleDrawer(true)}
+                classes={{paper: classes.drawerPaper}}
             >
-                Example Drawer
+                <div className={classes.barMargin}/>
+                <List disablePadding>
+                    {routes.map((route, index) => (
+                        <ListItem
+                            key={index}
+                            divider button
+                            component={Link}
+                            to={route.link}
+                            onClick={(e) => {setTab(index); setDrawerOpen(false); toggleDrawer(false)(e)}}
+                            selected={tab===index}
+                            classes={{selected: classes.drawerSelectedItem, root: classes.drawerItem}}
+                        >
+                            <ListItemText 
+                                disableTypography>
+                                {route.label}
+                            </ListItemText>
+                        </ListItem>
+                    ))}
+                    <ListItem 
+                        divider button 
+                        component={Link} 
+                        to={Links.estimate}
+                        onClick={(e) => {setTab(5); setDrawerOpen(false); toggleDrawer(false)(e)}}
+                        selected={tab===5}
+                        classes={{root: classes.estimate}}
+                        >
+                        <ListItemText disableTypography 
+                            className={ tab===5 ? `${classes.drawerItem} ${classes.drawerSelectedItem}` : classes.drawerItem}>
+                            Free Estimate
+                        </ListItemText>
+                    </ListItem>
+                </List>
             </SwipeableDrawer>
         </React.Fragment>
     )
     return(
         <>
             <ElevationScroll>
-                <AppBar color="primary">
+                <AppBar 
+                    classes={{root: classes.appBar}}
+                    color="primary">
                     <Toolbar disableGutters>
                         <img 
                             src={logo}
