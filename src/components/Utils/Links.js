@@ -4,5 +4,8 @@ export const Links = {
     revolution: "/revolution",
     about: "/about",
     contact: "/contact",
-    estimate: "/estimate"
+    estimate: "/estimate",
+    customsofware: "/customsofware",
+    mobiledevelopment: "/mobiledevelopment",
+    websitedevelopment: "/websitedevelopment"
 }

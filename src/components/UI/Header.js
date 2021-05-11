@@ -8,9 +8,17 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Button from '@material-ui/core/Button'
 import { Link, useHistory } from 'react-router-dom'
+import Menu from '@material-ui/core/Menu'
+import MenuIcon from '@material-ui/icons/Menu'
+import { MenuItem, 
+        useMediaQuery, 
+        useTheme,
+        SwipeableDrawer,
+        IconButton} from '@material-ui/core'
 
 import logo from '../../assets/logo.svg'
 import { Links } from '../Utils/Links'
+import { serviceMenuOptions } from '../Utils/serviceMenuOptions'
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -28,11 +36,17 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
     barMargin: {
         ...theme.mixins.toolbar,
-        marginBottom: "1.5rem"
+        marginBottom: "1rem",
+        [theme.breakpoints.down("md")]: {
+            marginBottom: "0.1rem"
+        }
     },
     logo: {
-        height: "5rem",
-        cursor: "pointer"  
+        maxHeight: "5rem",
+        cursor: "pointer",
+        [theme.breakpoints.down("md")]: {
+            height: "4rem"
+        }
     },
     tabContainer: {
         marginLeft: "auto"
@@ -51,24 +65,71 @@ const useStyles = makeStyles((theme) => ({
         height: "45px",
         fontSize: "1rem",
         color: "white"
+    },
+    menu: {
+        backgroundColor: theme.palette.primary.main,
+        color: "white",
+        borderRadius: "0px"
+    },
+    menuItem: {
+        ...theme.typography.tab,
+        opacity: 0.7,
+        "&:hover": {
+            opacity: 1
+        }
+    },
+    iconButton: {
+        marginLeft: "auto"
+    },
+    menuIcon: {
+        height: "40px",
+        width: "40px"
     }
 }))
 
 export default function Header() {
     const [tab, setTab] = React.useState(0)
+    const [anchorEl, setAnchorEl] = React.useState()
+    const [serviceOp, setServiceOp] = React.useState()
+    const [drawerOpen, setDrawerOpen] = React.useState()
+
     const history = useHistory()
+    const theme = useTheme()
+    const matches = useMediaQuery(theme.breakpoints.down("md"))
 
     const changeTabHandler = (e, tabIndex) => {
         setTab(tabIndex)
     }
-
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    }
+    const handleClose = () => {
+        setAnchorEl(null);
+    }
+    const serviveHandler = (index) => {
+        setTab(1)
+        setAnchorEl(null)
+        setServiceOp(index)
+    }
     React.useEffect(() => {
-        console.log(history.location.pathname)
+        console.log(serviceOp, tab)
         switch (history.location.pathname) {
             case Links.home:
                 setTab(0)
                 break;
             case Links.services:
+                setTab(1)
+                break;
+            case Links.customsofware:
+                setServiceOp(1)
+                setTab(1)
+                break;
+            case Links.mobiledevelopment:
+                setServiceOp(2)
+                setTab(1)
+                break;
+            case Links.websitedevelopment:
+                setServiceOp(3)
                 setTab(1)
                 break;
             case Links.revolution:
@@ -80,15 +141,120 @@ export default function Header() {
             case Links.contact:
                 setTab(4)
                 break;
-            case Links.estimate:
-                setTab(5)
-                break;
             default:
                 break;
         }
-    }, [setTab, history.location.pathname])
+    }, [setTab, history.location.pathname, serviceOp, tab])
 
     const classes = useStyles()
+
+    const tabs = (
+        <>
+          <Tabs 
+            onChange={changeTabHandler}
+            value={tab}
+            classes={{root: classes.tabContainer}}
+            indicatorColor="primary">
+            <Tab 
+                className={classes.tab} 
+                label="Home"
+                component={Link}
+                to={Links.home}
+                />
+            <Tab 
+                className={classes.tab} 
+                label="Services"
+                component={Link}
+                to={Links.services}
+                aria-controls="simple-menu" 
+                aria-haspopup="true"
+                onMouseMove={handleClick}
+                />
+            <Tab 
+                className={classes.tab} 
+                label="The Revolution"
+                component={Link}
+                to={Links.revolution}
+                />
+            <Tab 
+                className={classes.tab} 
+                label="About Us"
+                component={Link}
+                to={Links.about}
+                />
+            <Tab 
+                className={classes.tab} 
+                label="Contact Us"
+                component={Link}
+                to={Links.contact}
+                />
+        </Tabs>
+        <Button 
+            variant="contained"
+            color="secondary"
+            classes={{
+                root: classes.button
+            }}
+            component={Link}
+            to={Links.estimate}>
+            Free Estimate
+        </Button>
+        <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            MenuListProps={{
+                onMouseLeave: handleClose
+            }}
+            classes={{
+                paper: classes.menu
+            }}
+            elevation={0}
+        >
+            {serviceMenuOptions.map((option, index) => (
+                <MenuItem
+                    key={index}
+                    component={Link}
+                    to={option.link}
+                    classes={{root: classes.menuItem}}
+                    onClick={() => {
+                        serviveHandler(index)
+                    }}
+                    selected={serviceOp===index && tab===1}
+                    >
+                    {option.name}
+                </MenuItem>
+            ))}
+            </Menu>
+        </>
+    )
+
+    const toggleDrawer = (open) => (event) => {
+        if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+            }
+
+        setDrawerOpen(open)
+    };
+    const drawer = (
+        <React.Fragment>
+            <IconButton 
+                onClick={toggleDrawer(!drawerOpen)}
+                classes={{root: classes.iconButton}}>
+                <MenuIcon classes={{root: classes.menuIcon}} />
+            </IconButton>
+            <SwipeableDrawer
+                anchor="left"
+                open={!!drawerOpen}
+                onClose={toggleDrawer(false)}
+                onOpen={toggleDrawer(true)}
+            >
+                Example Drawer
+            </SwipeableDrawer>
+        </React.Fragment>
+    )
     return(
         <>
             <ElevationScroll>
@@ -103,56 +269,7 @@ export default function Header() {
                                 setTab(0)
                             }}
                             />
-                        <Tabs 
-                            onChange={changeTabHandler}
-                            value={tab}
-                            className={classes.tabContainer}
-                            indicatorColor="primary">
-                            <Tab 
-                                className={classes.tab} 
-                                label="Home"
-                                component={Link}
-                                to={Links.home}
-                                />
-                            <Tab 
-                                className={classes.tab} 
-                                label="Services"
-                                component={Link}
-                                to={Links.services}
-                                />
-                            <Tab 
-                                className={classes.tab} 
-                                label="The Revolution"
-                                component={Link}
-                                to={Links.revolution}
-                                />
-                            <Tab 
-                                className={classes.tab} 
-                                label="About Us"
-                                component={Link}
-                                to={Links.about}
-                                />
-                            <Tab 
-                                className={classes.tab} 
-                                label="Contact Us"
-                                component={Link}
-                                to={Links.contact}
-                                />
-                            <Tab 
-                                className={classes.tab} 
-                                label="Contact Us"
-                                component={Link}
-                                to={Links.contact}
-                                />
-                        </Tabs>
-                        <Button 
-                            variant="contained"
-                            color="secondary"
-                            className={classes.button}
-                            component={Link}
-                            to={Links.estimate}>
-                            Free Estimate
-                        </Button>
+                        {matches ? drawer : tabs}
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
