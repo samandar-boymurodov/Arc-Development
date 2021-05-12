@@ -4,7 +4,8 @@ import Header from './UI/Header'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import { Links } from './Utils/Links'
- 
+import { Footer } from './UI/Footer'
+
 function App() {
   return (
     <ThemeProvider theme={Theme}>
@@ -18,6 +19,7 @@ function App() {
           <Route exact path={Links.contact} component={() => <div>contact</div>}/>
           <Route exact path={Links.estimate} component={() => <div>estimate</div>}/>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>  
   );
