@@ -113,10 +113,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export default function Header() {
-    const [tab, setTab] = React.useState(0)
+export default function Header({tab, setTab, serviceOp, setServiceOp}) {
     const [anchorEl, setAnchorEl] = React.useState()
-    const [serviceOp, setServiceOp] = React.useState()
     const [drawerOpen, setDrawerOpen] = React.useState()
 
     const history = useHistory()
@@ -173,7 +171,7 @@ export default function Header() {
             default:
                 break;
         }
-    }, [setTab, history.location.pathname, serviceOp, tab])
+    }, [setTab, history.location.pathname, serviceOp, setServiceOp, tab])
 
     const classes = useStyles()
 
