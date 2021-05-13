@@ -16,6 +16,18 @@ export const Theme = createMuiTheme({
             textTransform: "none",
             fontWeight: "700",
             fontSize: "1rem"
+        },
+        estimate: {
+            fontFamily: "Pacifico",
+            fontSize: "1rem",
+            textTransform: "none",
+            color: "white"
+        },
+        h2: {
+            fontSize: "2.5em",
+            fontWeight: 700,
+            fontFamily: "Raleway",
+            lineHeight: 1.5
         }
     }
 })
