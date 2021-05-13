@@ -73,7 +73,10 @@ const useStyles = makeStyles((theme) => ({
         textTransform: "none",
         height: "45px",
         fontSize: "1rem",
-        color: "white"
+        color: "white",
+        "&:hover": {
+            backgroundColor: theme.palette.secondary.light
+        }
     },
     menu: {
         backgroundColor: theme.palette.primary.main,

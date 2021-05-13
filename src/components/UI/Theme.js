@@ -9,6 +9,9 @@ export const Theme = createMuiTheme({
             main: "#ff9800",
             light: "#ffa726"
         },
+        text: {
+            secondary: "#868686"
+        }
     },
     typography: {
         tab: {
@@ -28,6 +31,15 @@ export const Theme = createMuiTheme({
             fontWeight: 700,
             fontFamily: "Raleway",
             lineHeight: 1.5
+        },
+        h4: {
+            fontSize: "1.75rem",
+            fontWeight: 700,
+            fontFamily: "Raleway"
+        },
+        subtitle1: {
+            fontSize: "1.25rem",
+            fontWeight: 300
         }
     }
 })
