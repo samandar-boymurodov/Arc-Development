@@ -34,13 +34,13 @@ const useStyles = makeStyles(theme => ({
     },
     link: {
         color: "white",
-        fontFamily: "Arial",
         fontWeight: "bold",
-        fontSize: "0.7rem",
-        textDecoration: "none"
+        fontSize: "0.8rem",
+        textDecoration: "none",
+        fontFamily: theme.typography.fontFamily
     },
     gridItem: {
-        margin: "2rem"
+        margin: "3rem"
     },
     icon: {
         width: "3em",
