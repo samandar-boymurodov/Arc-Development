@@ -322,7 +322,7 @@ export default function LandingPage() {
                         <div className={classes.revolutionImg}></div>
                 </Grid>
             </Grid>
-            <Grid item>
+            <Grid item> {/* Contact Us*/}
                 <Grid container direction="row" 
                 style={{height: "80rem"}}
                 alignItems="center">
@@ -389,7 +389,7 @@ export default function LandingPage() {
                     <div className={classes.infoBlockImg}></div>
                 </Grid>
             </Grid>
-            <Grid item>
+            <Grid item> {/* Call To Action*/}
                 <CallToAction />
             </Grid>
         </Grid>
