@@ -322,13 +322,13 @@ export default function LandingPage() {
                         <div className={classes.revolutionImg}></div>
                 </Grid>
             </Grid>
+
             <Grid item> {/* Contact Us*/}
                 <Grid container direction="row" 
                 style={{height: "80rem"}}
                 alignItems="center">
                     <Grid container
-                        direction={matchesXS ? "column" : "row"}  
-                        spacing={matchesXS ? 10 : 0} 
+                        direction={matchesXS ? "column" : "row"}
                         style={{position: "absolute"}}>
                         <Grid sm item style={{marginLeft: matchesXS ? "0rem" : "5rem", 
                             textAlign: matchesXS ? "center" : "left"}}>
@@ -358,7 +358,8 @@ export default function LandingPage() {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid sm item style={{marginRight: matchesXS ? "0rem" : "5rem", textAlign: matchesXS ? "center" : "right" }}>
+                        <Grid sm item style={{marginRight: matchesXS ? "0rem" : "5rem", textAlign: matchesXS ? "center" : "right",
+                        marginTop: matchesXS ? "10rem": 0}}>
                             <Grid container direction="column">
                                 <Grid item>
                                     <Typography variant="h2" style={{color: "white"}}>
@@ -389,6 +390,7 @@ export default function LandingPage() {
                     <div className={classes.infoBlockImg}></div>
                 </Grid>
             </Grid>
+
             <Grid item> {/* Call To Action*/}
                 <CallToAction />
             </Grid>
