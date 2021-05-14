@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles'
 import ButtonArrow from './UI/ButtonArrow'
 import { Button, Grid, Typography, useMediaQuery, Card, CardContent } from '@material-ui/core'
 import { useTheme } from '@material-ui/styles'
-
+import { CallToAction } from './UI/CallToAction'
 import cusSofDevIcon from '../assets/Custom Software Icon.svg'
 import mobileDevIcon from '../assets/mobileIcon.svg'
 import websiteDevIcon from '../assets/websiteIcon.svg'
@@ -388,6 +388,9 @@ export default function LandingPage() {
                     </Grid>
                     <div className={classes.infoBlockImg}></div>
                 </Grid>
+            </Grid>
+            <Grid item>
+                <CallToAction />
             </Grid>
         </Grid>
     )
