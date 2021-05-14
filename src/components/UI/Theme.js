@@ -40,6 +40,15 @@ export const Theme = createMuiTheme({
         subtitle1: {
             fontSize: "1.25rem",
             fontWeight: 300
+        },
+        learnMoreButton: {
+            color: "#1769aa",
+            borderColor: "#1769aa",
+            fontFamily: "Roboto",
+            borderWidth: 2,
+            fontSize: "0.8rem",
+            fontWeight: "bold",
+            borderRadius: 50
         }
     }
 })

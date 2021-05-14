@@ -54,6 +54,18 @@ const useStyles = makeStyles(theme => ({
     },
     heroTextContainer: {
         minWidth: "21.5rem"
+    },
+    celebration: {
+        fontFamily: "Pacifico",
+        color: theme.palette.secondary.main
+    },
+    learnButton: {
+        ...theme.typography.learnMoreButton,
+        fontSize: "0.7rem",
+        height: 35
+    },
+    sectionContainer: {
+        marginTop: "2rem"
     }
 }))
 export default function LandingPage() {
@@ -113,18 +125,25 @@ export default function LandingPage() {
                 </Grid>
             </Grid>
             <Grid item> {/*---- Services Section ---- */}
-                <Grid item container direction="row">
-                    <Grid item>
+                <Grid 
+                    item container direction="row" 
+                    className={classes.sectionContainer}>
+                    <Grid item style={{marginLeft: "2rem"}}>
                         <Typography variant="h4" color="primary">
                             Custom Sofware Development
                         </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
+                        <Typography 
+                            variant="subtitle1" 
+                            color="textSecondary" 
+                            style={{marginBottom: "1rem"}}>
                             Save energy, Save Time, Save Money.
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
-                            Complete digital solutions, from investigation to celebration
+                            Complete digital solutions, from investigation to <span className={classes.celebration}>celebration</span>
                         </Typography>
-                        <Button variant="outlined">
+                        <Button 
+                            variant="outlined"
+                            className={classes.learnButton}>
                             <span style={{marginRight: 10}}>Learn more</span>
                             <ButtonArrow 
                                 height={10} 
