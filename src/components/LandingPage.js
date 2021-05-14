@@ -2,7 +2,7 @@ import Lottie from 'react-lottie'
 import animationData from '../animations/landinganimation/data'
 import { makeStyles } from '@material-ui/styles'
 import ButtonArrow from './UI/ButtonArrow'
-import { Button, Grid, Typography } from '@material-ui/core'
+import { Button, Grid, Typography, useMediaQuery } from '@material-ui/core'
 import { useTheme } from '@material-ui/styles'
 import cusSofDevIcon from '../assets/Custom Software Icon.svg'
 
@@ -65,12 +65,30 @@ const useStyles = makeStyles(theme => ({
         height: 35
     },
     sectionContainer: {
-        marginTop: "2rem"
+        marginTop: "6rem",
+        [theme.breakpoints.up("md")]: {
+            padding: "2.5rem"
+        }
+    },
+    icon: {
+        [theme.breakpoints.down("sm")]: {
+            marginTop: "1.5rem"
+        },
+        [theme.breakpoints.up("sm")]: {
+            marginLeft: "2rem"
+        }
+    },
+    firstBlockText: {
+        [theme.breakpoints.down("sm")]: {
+            paddingLeft: "1.7rem",
+            paddingRight: "1.7rem"
+        }
     }
 }))
 export default function LandingPage() {
     const classes = useStyles()
     const theme = useTheme()
+    const matches = useMediaQuery(theme.breakpoints.down("sm"))
 
     return( 
         <Grid 
@@ -127,8 +145,13 @@ export default function LandingPage() {
             <Grid item> {/*---- Services Section ---- */}
                 <Grid 
                     item container direction="row" 
-                    className={classes.sectionContainer}>
-                    <Grid item style={{marginLeft: "2rem"}}>
+                    className={classes.sectionContainer}
+                    justify={matches ? "center" : undefined}>
+                    <Grid item
+                        xs={matches ? 12 : ""}
+                        className={classes.firstBlockText}
+                        style={{textAlign: matches ? "center" : undefined}}
+                        >
                         <Typography variant="h4" color="primary">
                             Custom Sofware Development
                         </Typography>
@@ -151,8 +174,8 @@ export default function LandingPage() {
                                 fill={theme.palette.primary.main} />
                         </Button>
                     </Grid>
-                    <Grid>
-                        <img src={cusSofDevIcon} alt="icon" />
+                    <Grid item>
+                        <img src={cusSofDevIcon} alt="icon" className={classes.icon}/>
                     </Grid>
                 </Grid>
             </Grid>
