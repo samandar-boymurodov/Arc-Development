@@ -5,6 +5,7 @@ import ButtonArrow from './UI/ButtonArrow'
 import { Button, Grid, Typography, useMediaQuery } from '@material-ui/core'
 import { useTheme } from '@material-ui/styles'
 import cusSofDevIcon from '../assets/Custom Software Icon.svg'
+import mobileDevIcon from '../assets/mobileIcon.svg'
 
 const defaultOptions = {
       loop: true,
@@ -65,9 +66,10 @@ const useStyles = makeStyles(theme => ({
         height: 35
     },
     sectionContainer: {
-        marginTop: "6rem",
+        marginTop: "10rem",
         [theme.breakpoints.up("md")]: {
-            padding: "2.5rem"
+            marginLeft: "5rem",
+            marginRight :"5rem"
         }
     },
     icon: {
@@ -142,10 +144,10 @@ export default function LandingPage() {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item> {/*---- Services Section ---- */}
-                <Grid 
+            <Grid item className={classes.sectionContainer}> {/*---- Services Section ---- */}
+                {/* Custom Dev*/}
+                 <Grid 
                     item container direction="row" 
-                    className={classes.sectionContainer}
                     justify={matches ? "center" : undefined}>
                     <Grid item
                         xs={matches ? 12 : ""}
@@ -178,6 +180,44 @@ export default function LandingPage() {
                         <img src={cusSofDevIcon} alt="icon" className={classes.icon}/>
                     </Grid>
                 </Grid>
+                {/* Mobile Dev */}
+                <Grid 
+                    item container direction="row" 
+                    justify={matches ? "center" : "flex-end"}
+                    style={{marginTop: "15rem"}}
+                    >
+                    <Grid item
+                        xs={matches ? 12 : ""}
+                        className={classes.firstBlockText}
+                        style={{textAlign: matches ? "center" : undefined}}
+                        >
+                        <Typography variant="h4" color="primary">
+                            IOS/Android App Development
+                        </Typography>
+                        <Typography 
+                            variant="subtitle1" 
+                            color="textSecondary" 
+                            style={{marginBottom: "1rem"}}>
+                            Extend Functionality, Extend Access, Increase Engagement.
+                        </Typography>
+                        <Typography variant="subtitle1" color="textSecondary">
+                            Integrate your web experience or create a standalone app with <br />     either mobile platform
+                        </Typography>
+                        <Button 
+                            variant="outlined"
+                            className={classes.learnButton}>
+                            <span style={{marginRight: 10}}>Learn more</span>
+                            <ButtonArrow 
+                                height={10} 
+                                width={10} 
+                                fill={theme.palette.primary.main} />
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <img src={mobileDevIcon} alt="icon" className={classes.icon}/>
+                    </Grid>
+                </Grid>
+                
             </Grid>
         </Grid>
     )
