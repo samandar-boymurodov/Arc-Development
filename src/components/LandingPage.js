@@ -122,6 +122,7 @@ export default function LandingPage() {
     const classes = useStyles()
     const theme = useTheme()
     const matches = useMediaQuery(theme.breakpoints.down("sm"))
+    const matchesXS = useMediaQuery(theme.breakpoints.down("xs"))
 
     return( 
         <Grid 
@@ -325,30 +326,63 @@ export default function LandingPage() {
                 <Grid container direction="row" 
                 style={{height: "80rem"}}
                 alignItems="center">
-                    <Grid item style={{position: "absolute", marginLeft: "5rem" }}>
-                        <Grid container direction="column">
-                            <Grid item>
-                                <Typography variant="h2" style={{color: "white"}}>
-                                    About Us
-                                </Typography>
-                                <Typography variant="subtitle2">
-                                    Let's get personal.
-                                </Typography>
+                    <Grid container
+                        direction={matchesXS ? "column" : "row"}  
+                        spacing={matchesXS ? 10 : 0} 
+                        style={{position: "absolute"}}>
+                        <Grid sm item style={{marginLeft: matchesXS ? "0rem" : "5rem", 
+                            textAlign: matchesXS ? "center" : "left"}}>
+                            <Grid container direction="column">
+                                <Grid item>
+                                    <Typography variant="h2" style={{color: "white"}}>
+                                        About Us
+                                    </Typography>
+                                    <Typography variant="subtitle2">
+                                        Let's get personal.
+                                    </Typography>
+                                </Grid>
+                                <Grid item>
+                                    <Button 
+                                        variant="outlined"
+                                        className={classes.learnButton}
+                                        style={{
+                                            color: "white",
+                                            borderColor: "white"
+                                        }}>
+                                        <span style={{marginRight: 10}}>Learn more</span>
+                                        <ButtonArrow 
+                                            height={10} 
+                                            width={10} 
+                                            fill="white" />
+                                    </Button>
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <Button 
-                                    variant="outlined"
-                                    className={classes.learnButton}
-                                    style={{
-                                        color: "white",
-                                        borderColor: "white"
-                                    }}>
-                                    <span style={{marginRight: 10}}>Learn more</span>
-                                    <ButtonArrow 
-                                        height={10} 
-                                        width={10} 
-                                        fill="white" />
-                                </Button>
+                        </Grid>
+                        <Grid sm item style={{marginRight: matchesXS ? "0rem" : "5rem", textAlign: matchesXS ? "center" : "right" }}>
+                            <Grid container direction="column">
+                                <Grid item>
+                                    <Typography variant="h2" style={{color: "white"}}>
+                                        Contact Us
+                                    </Typography>
+                                    <Typography variant="subtitle2">
+                                        Say hello! 👋
+                                    </Typography>
+                                </Grid>
+                                <Grid item>
+                                    <Button 
+                                        variant="outlined"
+                                        className={classes.learnButton}
+                                        style={{
+                                            color: "white",
+                                            borderColor: "white"
+                                        }}>
+                                        <span style={{marginRight: 10}}>Learn more</span>
+                                        <ButtonArrow 
+                                            height={10} 
+                                            width={10} 
+                                            fill="white" />
+                                    </Button>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
