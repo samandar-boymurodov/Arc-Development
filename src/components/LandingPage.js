@@ -4,8 +4,10 @@ import { makeStyles } from '@material-ui/styles'
 import ButtonArrow from './UI/ButtonArrow'
 import { Button, Grid, Typography, useMediaQuery } from '@material-ui/core'
 import { useTheme } from '@material-ui/styles'
+
 import cusSofDevIcon from '../assets/Custom Software Icon.svg'
 import mobileDevIcon from '../assets/mobileIcon.svg'
+import websiteDevIcon from '../assets/websiteIcon.svg'
 
 const defaultOptions = {
       loop: true,
@@ -215,6 +217,43 @@ export default function LandingPage() {
                     </Grid>
                     <Grid item>
                         <img src={mobileDevIcon} alt="icon" className={classes.icon}/>
+                    </Grid>
+                </Grid>
+                {/* Website Dev */}
+                <Grid 
+                    item container direction="row" 
+                    justify={matches ? "center" : undefined}
+                    style={{marginTop: "15rem"}}
+                    >
+                    <Grid item
+                        xs={matches ? 12 : ""}
+                        className={classes.firstBlockText}
+                        style={{textAlign: matches ? "center" : undefined}}
+                        >
+                        <Typography variant="h4" color="primary">
+                            Website Development
+                        </Typography>
+                        <Typography 
+                            variant="subtitle1" 
+                            color="textSecondary" 
+                            style={{marginBottom: "1rem"}}>
+                            Reach more, Discover more, Sell more.
+                        </Typography>
+                        <Typography variant="subtitle1" color="textSecondary">
+                            Optimized for Searcg Engines, built for speed.
+                        </Typography>
+                        <Button 
+                            variant="outlined"
+                            className={classes.learnButton}>
+                            <span style={{marginRight: 10}}>Learn more</span>
+                            <ButtonArrow 
+                                height={10} 
+                                width={10} 
+                                fill={theme.palette.primary.main} />
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <img src={websiteDevIcon} alt="icon" className={classes.icon}/>
                     </Grid>
                 </Grid>
                 
