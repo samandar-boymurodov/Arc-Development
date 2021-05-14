@@ -19,8 +19,10 @@ const useClasses = makeStyles(theme => ({
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         [theme.breakpoints.down("md")]: {
-            backgroundImage: `url(${mobileBackground})`
-        }
+            backgroundImage: `url(${mobileBackground})`,
+            backgroundAttachment: "inherit"
+        },
+        backgroundAttachment: "fixed"
     },
     estimate: {
         ...theme.typography.estimate,
@@ -82,7 +84,7 @@ export const CallToAction = function () {
                         <Button 
                             variant="outlined"
                             className={classes.learnButton}>
-                            <span style={{marginRight: 0}}>Learn more</span>
+                            <span style={{marginRight: 10}}>Learn more</span>
                             <ButtonArrow 
                                 height={10} 
                                 width={10} 
