@@ -49,6 +49,10 @@ export const Theme = createMuiTheme({
             fontSize: "0.8rem",
             fontWeight: "bold",
             borderRadius: 50
+        },
+        h3: {
+            fontFamily: "Pacifico",
+            fontSize: "2.5rem"
         }
     }
 })
