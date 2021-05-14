@@ -36,6 +36,12 @@ const useClasses = makeStyles(theme => ({
         [theme.breakpoints.down("sm")]: {
             marginRight: 0
         }
+    },
+    textContainer: {
+        [theme.breakpoints.down("sm")]: {
+            marginLeft: "1.5rem",
+            marginRight: "1.5rem"
+        } 
     }
 }))
 
@@ -58,7 +64,9 @@ export const CallToAction = function () {
                 style={{
                     marginLeft: matchesSM ? 0 : "5rem",
                     textAlign: matchesSM ? "center" : undefined
-                    }}>
+                    }}
+                className={classes.textContainer}
+                >
                 <Grid container direction="column">
                     <Grid item>
                         <Typography variant="h2" color="primary">
