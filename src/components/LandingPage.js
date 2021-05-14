@@ -9,6 +9,7 @@ import cusSofDevIcon from '../assets/Custom Software Icon.svg'
 import mobileDevIcon from '../assets/mobileIcon.svg'
 import websiteDevIcon from '../assets/websiteIcon.svg'
 import revolutionBackground from '../assets/repeatingBackground.svg'
+import infoBack from '../assets/infoBackground.svg'
 
 const defaultOptions = {
       loop: true,
@@ -107,6 +108,14 @@ const useStyles = makeStyles(theme => ({
             width: "100%"
         },
         boxShadow: theme.shadows[10]
+    },
+    infoBlockImg: {
+        backgroundImage: `url(${infoBack})`,
+        height: "100%",
+        width: "100%",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
     }
 }))
 export default function LandingPage() {
@@ -310,6 +319,40 @@ export default function LandingPage() {
                             </CardContent>
                         </Card>
                         <div className={classes.revolutionImg}></div>
+                </Grid>
+            </Grid>
+            <Grid item>
+                <Grid container direction="row" 
+                style={{height: "80rem"}}
+                alignItems="center">
+                    <Grid item style={{position: "absolute", marginLeft: "5rem" }}>
+                        <Grid container direction="column">
+                            <Grid item>
+                                <Typography variant="h2" style={{color: "white"}}>
+                                    About Us
+                                </Typography>
+                                <Typography variant="subtitle2">
+                                    Let's get personal.
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Button 
+                                    variant="outlined"
+                                    className={classes.learnButton}
+                                    style={{
+                                        color: "white",
+                                        borderColor: "white"
+                                    }}>
+                                    <span style={{marginRight: 10}}>Learn more</span>
+                                    <ButtonArrow 
+                                        height={10} 
+                                        width={10} 
+                                        fill="white" />
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <div className={classes.infoBlockImg}></div>
                 </Grid>
             </Grid>
         </Grid>

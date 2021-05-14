@@ -53,6 +53,11 @@ export const Theme = createMuiTheme({
         h3: {
             fontFamily: "Pacifico",
             fontSize: "2.5rem"
+        },
+        subtitle2: {
+            color: "white",
+            fontSize: "1.25rem",
+            fontWeight: 300
         }
     }
 })
