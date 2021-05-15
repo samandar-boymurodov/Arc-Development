@@ -4,6 +4,7 @@ import { Theme } from './UI/Theme'
 import Header from './UI/Header'
 import LandingPage from './LandingPage'
 import { Services } from './Services'
+import { CustomSofware } from './CustomSoftware'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import { Links } from './Utils/Links'
@@ -24,6 +25,7 @@ function App() {
           <Route exact path={Links.about} component={() => <div>about</div>} />
           <Route exact path={Links.contact} component={() => <div>contact</div>}/>
           <Route exact path={Links.estimate} component={() => <div>estimate</div>}/>
+          <Route exact path={Links.customsofware} component={CustomSofware} />
         </Switch>
         <Footer tab={tab} setTab={setTab} serviceOp={serviceOp} setServiceOp={setServiceOp}/>
       </BrowserRouter>
