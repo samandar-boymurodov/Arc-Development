@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     },
     gridContainer: {
         position: "absolute",
-        top: "0"
+        marginTop: "-13rem"
     },
     link: {
         color: "white",
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
         fontFamily: theme.typography.fontFamily
     },
     gridItem: {
-        margin: "3rem"
+      margin: "3rem"
     },
     icon: {
         width: "3em",
