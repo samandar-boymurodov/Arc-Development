@@ -8,6 +8,7 @@ import bulb from '../assets/bulb.svg'
 import cash from '../assets/cash.svg'
 import stopwatch from '../assets/stopwatch.svg'
 import docAnimation from '../animations/documentsAnimation/data'
+import peopleAnimation from '../animations/scaleAnimation/data.json'
 
 const useStyles = makeStyles(theme => ({
     textContainer: {
@@ -31,6 +32,14 @@ const defaultOptions = {
     loop: true,
     autoplay: true, 
     animationData: docAnimation,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  }
+  const scaleOptions = {
+    loop: true,
+    autoplay: true, 
+    animationData: peopleAnimation,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice'
     }
@@ -112,7 +121,7 @@ export const CustomSofware = function() {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item container>
+            <Grid item container justify="space-between">
                 <Grid item container className={classes.itemContainer}>
                     <Grid item container direction="column" md>
                         <Grid item>
@@ -133,7 +142,38 @@ export const CustomSofware = function() {
                         </Grid>
                     </Grid>
                     <Grid item md>
-                        <Lottie options={defaultOptions} />
+                        <Lottie 
+                            options={defaultOptions} 
+                            style={{
+                                maxWidth: 275,
+                                maxHeight: 325,
+                                minHeight: 275
+                            }}
+                            />
+                    </Grid>
+                </Grid>
+                <Grid item container className={classes.itemContainer}>
+                <Grid item md>
+                        <Lottie 
+                            options={scaleOptions} 
+                            style={{
+                                maxWidth: 275,
+                                maxHeight: 325,
+                                minHeight: 275
+                            }}
+                            />
+                    </Grid>
+                    <Grid item container direction="column" md>
+                        <Grid item>
+                            <Typography variant="h4" align="right" color="primary">
+                                Scale
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography align="right" variant="body2">
+                                Whether you’re a large brand, just getting started, or taking off right now, our application architecture ensures pain-free growth and reliability.
+                            </Typography>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
