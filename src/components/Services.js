@@ -34,10 +34,29 @@ export const Services = function() {
     const matches = useMediaQuery(theme.breakpoints.down("sm"))
 
     return(
-        <Grid container direction="column">
+        <Grid 
+            container 
+            direction="column"
+            style = {{
+                paddingLeft: matches ? undefined : "5rem",
+                paddingRight: matches ? undefined : "5rem"
+            }}
+            >
+            <Grid item
+                style={{
+                    marginTop: matches ? "1rem" : "2rem",
+                    marginBottom: "4rem"
+                }}>
+                <Typography 
+                    variant="h2" 
+                    color="primary"
+                    align={matches ? "center" : undefined}>
+                    Services
+                </Typography>
+            </Grid>
             {/* Mobile Dev */}
             <Grid 
-                item container direction="row" 
+                item container direction="row"
                 justify={matches ? "center" : "flex-end"}
                 >
                 <Grid item
@@ -117,7 +136,7 @@ export const Services = function() {
             {/* Website Dev */}
             <Grid 
                 item container direction="row"
-                style={{marginTop: "15rem"}}
+                style={{marginTop: "15rem", marginBottom: "10rem"}}
                 justify={matches ? "center" : "flex-end"}
                 >
                 <Grid item
