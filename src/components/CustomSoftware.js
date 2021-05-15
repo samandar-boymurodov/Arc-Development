@@ -7,6 +7,8 @@ import forwardArrow from '../assets/forwardArrow.svg'
 import bulb from '../assets/bulb.svg'
 import cash from '../assets/cash.svg'
 import stopwatch from '../assets/stopwatch.svg'
+import root from '../assets/root.svg'
+
 import docAnimation from '../animations/documentsAnimation/data'
 import peopleAnimation from '../animations/scaleAnimation/data.json'
 
@@ -122,7 +124,7 @@ export const CustomSofware = function() {
                 </Grid>
             </Grid>
             <Grid item container justify="space-between">
-                <Grid item container className={classes.itemContainer}>
+                <Grid item container className={classes.itemContainer} md>
                     <Grid item container direction="column" md>
                         <Grid item>
                             <Typography variant="h4" color="primary">
@@ -146,20 +148,20 @@ export const CustomSofware = function() {
                             options={defaultOptions} 
                             style={{
                                 maxWidth: 275,
-                                maxHeight: 325,
-                                minHeight: 275
+                                maxHeight: 275,
+                                minHeight: 250
                             }}
                             />
                     </Grid>
                 </Grid>
-                <Grid item container className={classes.itemContainer}>
+                <Grid item container className={classes.itemContainer} md>
                 <Grid item md>
                         <Lottie 
                             options={scaleOptions} 
                             style={{
-                                maxWidth: 275,
-                                maxHeight: 325,
-                                minHeight: 275
+                                maxWidth: 280,
+                                maxHeight: 260,
+                                
                             }}
                             />
                     </Grid>
@@ -175,6 +177,32 @@ export const CustomSofware = function() {
                             </Typography>
                         </Grid>
                     </Grid>
+                </Grid>
+            </Grid>
+            <Grid item container justify="center">
+                <Grid 
+                    item container 
+                    direction="column" 
+                    alignItems="center"
+                    className={classes.textContainer}>
+                        <Grid item>
+                            <img
+                                height="450rem"
+                                width="450rem"
+                                src={root} 
+                                alt="root" />
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="h4" gutterBottom color="primary" align="center">
+                                Root-Cause Analysis
+                            </Typography>
+                            <Typography variant="body2" paragraph align="center">
+                                Many problems are merely symptoms of larger, underlying issues.
+                            </Typography>   
+                            <Typography variant="body2" paragraph align="center">
+                                We can help you thoroughly examine all areas of your business to develop a holistic plan for the most effective implementation of technology.
+                            </Typography>   
+                        </Grid>
                 </Grid>
             </Grid>
         </Grid>
