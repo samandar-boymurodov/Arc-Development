@@ -1,6 +1,11 @@
 import { makeStyles, useTheme } from '@material-ui/styles'
-import { Grid, Typography, IconButton, useMediaQuery } from '@material-ui/core'
+import { Grid,
+        Typography,
+        IconButton,
+        useMediaQuery,
+        Hidden } from '@material-ui/core'
 import Lottie from 'react-lottie'
+import { CallToAction } from './UI/CallToAction'
 
 import backArrow from '../assets/backArrow.svg'
 import forwardArrow from '../assets/forwardArrow.svg'
@@ -22,7 +27,11 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: "5rem",
         paddingRight: "5rem",
         paddingTop: "1rem",
-        paddingBottom: "10rem"
+        paddingBottom: "10rem",
+        [theme.breakpoints.down("sm")]: {
+            paddingLeft: "1.5rem",
+            paddingRight: "1.5rem"
+        }
     },
     arrow: {
         marginTop: "0.5rem"
@@ -34,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 
 const defaultOptions = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     animationData: docAnimation,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice'
@@ -42,7 +51,7 @@ const defaultOptions = {
   }
   const scaleOptions = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     animationData: peopleAnimation,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice'
@@ -50,7 +59,7 @@ const defaultOptions = {
   }
   const autoOptions = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     animationData: autoAnimation,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice'
@@ -58,31 +67,42 @@ const defaultOptions = {
   }
   const uxOptions = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     animationData: uxAnimation,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice'
     }
   }
-  
+
 export const CustomSofware = function() {
     const classes = useStyles()
     const theme = useTheme()
 
     const matchesMD = useMediaQuery(theme.breakpoints.down("md"))
-
+    const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
     return(
-        <Grid 
-            container 
+        <>
+        <Grid
+            container
             direction="column"
             className={classes.mainContainer}>
-            <Grid item container>
-                <Grid item className={classes.arrow}>
-                    <IconButton>
-                        <img src={backArrow} alt="backArrow" />
-                    </IconButton>
-                </Grid>
-                <Grid item className={classes.textContainer}>
+            <Grid
+                item
+                container
+                justify={matchesMD ? "center" : "flex-start"}>
+                <Hidden mdDown>
+                    <Grid item className={classes.arrow}>
+                        <IconButton>
+                            <img src={backArrow} alt="backArrow" />
+                        </IconButton>
+                    </Grid>
+                </Hidden>
+                <Grid
+                    item
+                    className={classes.textContainer}
+                    style={{
+                        textAlign: matchesMD ? "center" : "inherit"
+                    }}>
                     <Typography variant="h2" color="primary">
                         Custom Software Development
                     </Typography>
@@ -99,17 +119,19 @@ export const CustomSofware = function() {
                           We create exactly what you what, exactly how you want it.
                     </Typography>
                 </Grid>
-                <Grid item  className={classes.arrow}>
-                    <IconButton>
-                            <img src={forwardArrow} alt="forwardArrow" />
-                    </IconButton>
-                </Grid>
+                <Hidden mdDown>
+                    <Grid item className={classes.arrow}>
+                        <IconButton>
+                                <img src={forwardArrow} alt="forwardArrow" />
+                        </IconButton>
+                    </Grid>
+                </Hidden>
             </Grid>
             <Grid item container direction="row" style={{
                 marginTop: "15rem",
                 marginBottom: "20rem"
             }}
-            spacing={matchesMD ? 10 : 0}>
+            >
                 <Grid item container md direction="column" alignItems="center">
                     <Grid item>
                         <Typography variant="h4" color="primary">
@@ -120,7 +142,11 @@ export const CustomSofware = function() {
                         <img src={bulb} alt="bulb" />
                     </Grid>
                 </Grid>
-                <Grid item container md direction="column" alignItems="center">
+                <Grid item container md direction="column" alignItems="center"
+                style={{
+                    marginTop: matchesSM ? "10rem" : undefined,
+                    marginBottom: matchesMD ? "10rem" : undefined
+                }}>
                     <Grid item>
                         <Typography variant="h4" color="primary">
                             Save Time
@@ -141,9 +167,27 @@ export const CustomSofware = function() {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item container justify="space-between">
-                <Grid item container className={classes.itemContainer} md>
-                    <Grid item container direction="column" md>
+            <Grid
+                item
+                container
+                justify="space-between"
+                direction={matchesMD ? "column" : "row"}
+                alignItems={matchesMD ? "center" : undefined}>
+                <Grid
+                    item
+                    container
+                    className={classes.itemContainer} md
+                    direction={matchesMD ? "column" : "row"}
+                    alignItems={matchesMD ? "center" : undefined}
+                    style={{marginBottom: matchesMD ? "15rem" : 0}}>
+                    <Grid
+                        item
+                        container
+                        direction="column" md
+                        style={{
+                            textAlign: matchesSM ? "center" : "inherit"
+                        }}
+                        >
                         <Grid item>
                             <Typography variant="h4" color="primary">
                                 Digital Documents & Data
@@ -162,8 +206,8 @@ export const CustomSofware = function() {
                         </Grid>
                     </Grid>
                     <Grid item md>
-                        <Lottie 
-                            options={defaultOptions} 
+                        <Lottie
+                            options={defaultOptions}
                             style={{
                                 maxWidth: 275,
                                 maxHeight: 275,
@@ -172,46 +216,48 @@ export const CustomSofware = function() {
                             />
                     </Grid>
                 </Grid>
-                <Grid item container className={classes.itemContainer} md>
-                <Grid item md>
-                        <Lottie 
-                            options={scaleOptions} 
-                            style={{
-                                maxWidth: 280,
-                                maxHeight: 260,
-                                
-                            }}
+                <Grid item container className={classes.itemContainer} md
+                     direction={matchesMD ? "column" : "row"}
+                    alignItems={matchesMD ? "center" : undefined}>
+                    <Grid item md>
+                            <Lottie
+                                options={scaleOptions}
+                                style={{
+                                    maxWidth: 280,
+                                    maxHeight: 260,
+
+                                }}
                             />
                     </Grid>
                     <Grid item container direction="column" md>
                         <Grid item>
-                            <Typography variant="h4" align="right" color="primary">
+                            <Typography variant="h4" align={matchesSM ? "center" : "right"} color="primary">
                                 Scale
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography align="right" variant="body2">
+                            <Typography align={matchesSM ? "center" : "right"} variant="body2">
                                 Whether you’re a large brand, just getting started, or taking off right now, our application architecture ensures pain-free growth and reliability.
                             </Typography>
                         </Grid>
                     </Grid>
                 </Grid>
             </Grid>
-            
+
             <Grid item container justify="center" style={{
                 marginTop: "20rem",
                 marginBottom: "20rem"
             }}>
-                <Grid 
-                    item container 
-                    direction="column" 
+                <Grid
+                    item container
+                    direction="column"
                     alignItems="center"
                     className={classes.textContainer}>
                         <Grid item>
                             <img
                                 height="450rem"
-                                width="450rem"
-                                src={root} 
+                                width= {matchesSM ? "300rem" : "450rem"}
+                                src={root}
                                 alt="root" />
                         </Grid>
                         <Grid item>
@@ -220,15 +266,29 @@ export const CustomSofware = function() {
                             </Typography>
                             <Typography variant="body2" paragraph align="center">
                                 Many problems are merely symptoms of larger, underlying issues.
-                            </Typography>   
+                            </Typography>
                             <Typography variant="body2" paragraph align="center">
                                 We can help you thoroughly examine all areas of your business to develop a holistic plan for the most effective implementation of technology.
-                            </Typography>   
+                            </Typography>
                         </Grid>
                 </Grid>
             </Grid>
-            <Grid item container justify="space-between">
-                <Grid item container className={classes.itemContainer} md>
+            <Grid
+                item
+                container
+                justify="space-between"
+                direction={matchesMD ? "column" : "row"}
+                alignItems={matchesMD ? "center" : undefined}
+                style={{
+                    marginBottom: "10rem"
+                }}>
+                <Grid item container className={classes.itemContainer} md
+                style={{
+                            marginBottom: matchesMD ? "15rem" : 0,
+                            textAlign: matchesSM ? "center" : "inherit"
+                        }}
+                        direction={matchesMD ? "column" : "row"}
+                    alignItems={matchesMD ? "center" : undefined}>
                     <Grid item container direction="column" md>
                         <Grid item>
                             <Typography variant="h4" color="primary">
@@ -248,8 +308,8 @@ export const CustomSofware = function() {
                         </Grid>
                     </Grid>
                     <Grid item md>
-                        <Lottie 
-                            options={autoOptions} 
+                        <Lottie
+                            options={autoOptions}
                             style={{
                                 maxWidth: 280,
                                 maxHeight: 290
@@ -257,31 +317,33 @@ export const CustomSofware = function() {
                             />
                     </Grid>
                 </Grid>
-                <Grid item container className={classes.itemContainer} md>
+                <Grid item container className={classes.itemContainer} md
+                direction={matchesMD ? "column" : "row"}
+                    alignItems={matchesMD ? "center" : undefined}>
                 <Grid item md>
-                        <Lottie 
-                            options={uxOptions} 
+                        <Lottie
+                            options={uxOptions}
                             style={{
                                 maxWidth: 155,
                                 maxHeight: 310,
-                                
+
                             }}
                             />
                     </Grid>
                     <Grid item container direction="column" md>
                         <Grid item>
-                            <Typography variant="h4" align="right" color="primary">
+                            <Typography variant="h4" align={matchesSM ? "center" : "right"} color="primary">
                             User Experience <br /> Design
                             </Typography>
                         </Grid>
                         <Grid item>
-                           <Typography variant="body2" paragraph align="right">
+                           <Typography variant="body2" paragraph align={matchesSM ? "center" : "right"}>
                            A good design that isn’t usable isn’t a good design.
                             </Typography>
-                            <Typography variant="body2" paragraph align="right">
-                            So why are so many pieces of software complicated, confusing, and frustrating?  
+                            <Typography variant="body2" paragraph align={matchesSM ? "center" : "right"}>
+                            So why are so many pieces of software complicated, confusing, and frustrating?
                             </Typography>
-                            <Typography variant="body2" paragraph align="right">
+                            <Typography variant="body2" paragraph align={matchesSM ? "center" : "right"}>
                             By prioritizing users and the real ways they interact with technology we’re able to develop unique, personable experiences that solve problems rather than create new ones.
                             </Typography>
                         </Grid>
@@ -289,5 +351,7 @@ export const CustomSofware = function() {
                 </Grid>
             </Grid>
         </Grid>
+    <CallToAction />
+    </>
     )
 }
