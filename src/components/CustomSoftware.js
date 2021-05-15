@@ -1,11 +1,13 @@
 import { makeStyles, useTheme } from '@material-ui/styles'
 import { Grid, Typography, IconButton, useMediaQuery } from '@material-ui/core'
+import Lottie from 'react-lottie'
 
 import backArrow from '../assets/backArrow.svg'
 import forwardArrow from '../assets/forwardArrow.svg'
 import bulb from '../assets/bulb.svg'
 import cash from '../assets/cash.svg'
 import stopwatch from '../assets/stopwatch.svg'
+import docAnimation from '../animations/documentsAnimation/data'
 
 const useStyles = makeStyles(theme => ({
     textContainer: {
@@ -19,9 +21,21 @@ const useStyles = makeStyles(theme => ({
     },
     arrow: {
         marginTop: "0.5rem"
+    },
+    itemContainer: {
+        maxWidth: "40rem"
     }
 }))
 
+const defaultOptions = {
+    loop: true,
+    autoplay: true, 
+    animationData: docAnimation,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  }
+  
 export const CustomSofware = function() {
     const classes = useStyles()
     const theme = useTheme()
@@ -95,6 +109,31 @@ export const CustomSofware = function() {
                     </Grid>
                     <Grid item>
                         <img src={cash} alt="cash" />
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid item container>
+                <Grid item container className={classes.itemContainer}>
+                    <Grid item container direction="column" md>
+                        <Grid item>
+                            <Typography variant="h4" color="primary">
+                                Digital Documents & Data
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="body2" paragraph>
+                                Reduce Errors. Reduce Waste. Reduce Costs.
+                            </Typography>
+                            <Typography variant="body2" paragraph>
+                                Billions are spent annually on the purchasing, printing, and distribution of paper. On top of the massive environmental impact this has, it causes harm to your bottom line as well.
+                            </Typography>
+                            <Typography variant="body2" paragraph>
+                                  By utilizing digital forms and documents you can remove these obsolete expenses, accelerate your communication, and help the Earth.
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid item md>
+                        <Lottie options={defaultOptions} />
                     </Grid>
                 </Grid>
             </Grid>
