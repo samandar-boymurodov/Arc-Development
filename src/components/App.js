@@ -3,6 +3,7 @@ import { ThemeProvider } from "@material-ui/styles/"
 import { Theme } from './UI/Theme'
 import Header from './UI/Header'
 import LandingPage from './LandingPage'
+import { Services } from './Services'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import { Links } from './Utils/Links'
@@ -18,7 +19,7 @@ function App() {
         <Header tab={tab} setTab={setTab} serviceOp={serviceOp} setServiceOp={setServiceOp} />
         <Switch>
           <Route exact path={Links.home} component={LandingPage}/>
-          <Route exact path={Links.services} component={() => <div>services</div>}/>
+          <Route exact path={Links.services} component={Services}/>
           <Route exact path={Links.revolution} component={() => <div>revolution</div>}/>
           <Route exact path={Links.about} component={() => <div>about</div>} />
           <Route exact path={Links.contact} component={() => <div>contact</div>}/>

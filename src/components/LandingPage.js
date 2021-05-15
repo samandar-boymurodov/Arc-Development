@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     animation: {
         maxWidth: "50rem",
         minWidth: "21rem",
-        marginTop: "2rem",
+        marginTop: "5rem",
         marginLeft: "10%"
     },
     estimate: {
