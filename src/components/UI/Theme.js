@@ -59,7 +59,7 @@ export const Theme = createMuiTheme({
             fontSize: "1.25rem",
             fontWeight: 300
         },
-        body1: {
+        body2: {
             fontSize: "1.25rem",
             fontWeight: 300,
             color: "#868686"
