@@ -6,6 +6,7 @@ import LandingPage from './LandingPage'
 import { Services } from './Services'
 import { CustomSofware } from './CustomSoftware'
 import { MobileApps } from './MobileApps'
+import { WebDev } from './WebDev'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import { Links } from './Utils/Links'
@@ -28,6 +29,7 @@ function App() {
           <Route exact path={Links.estimate} component={() => <div>estimate</div>}/>
           <Route exact path={Links.customsofware} component={CustomSofware} />
           <Route exact path={Links.mobiledevelopment} component={MobileApps} />
+          <Route exact path={Links.websitedevelopment} component={WebDev} />
         </Switch>
         <Footer tab={tab} setTab={setTab} serviceOp={serviceOp} setServiceOp={setServiceOp}/>
       </BrowserRouter>
