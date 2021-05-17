@@ -7,6 +7,7 @@ import { Services } from './Services'
 import { CustomSofware } from './CustomSoftware'
 import { MobileApps } from './MobileApps'
 import { WebDev } from './WebDev'
+import { Revolution } from './Revolution'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import { Links } from './Utils/Links'
@@ -23,7 +24,7 @@ function App() {
         <Switch>
           <Route exact path={Links.home} component={LandingPage}/>
           <Route exact path={Links.services} component={Services}/>
-          <Route exact path={Links.revolution} component={() => <div>revolution</div>}/>
+          <Route exact path={Links.revolution} component={Revolution}/>
           <Route exact path={Links.about} component={() => <div>about</div>} />
           <Route exact path={Links.contact} component={() => <div>contact</div>}/>
           <Route exact path={Links.estimate} component={() => <div>estimate</div>}/>
