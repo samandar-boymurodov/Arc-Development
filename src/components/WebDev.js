@@ -7,6 +7,7 @@ import analytics from '../assets/analytics.svg'
 import seo from '../assets/seo.svg'
 import outreach from '../assets/outreach.svg'
 import ecommerce from '../assets/ecommerce.svg'
+import { CallToAction } from './UI/CallToAction'
 
 const useStyles = makeStyles(theme => ({
     mainContainer: {
@@ -32,8 +33,9 @@ export const WebDev = function() {
     const theme = useTheme()
 
     const matchesMD = useMediaQuery(theme.breakpoints.down("md"))
+    const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
     return(
-        <Grid 
+        <><Grid 
             container 
             direction="column"
             className={classes.mainContainer}>
@@ -73,7 +75,16 @@ export const WebDev = function() {
                     </Grid>
                 </Hidden>
             </Grid>
-            <Grid container item alignItems="center">
+            <Grid 
+                container 
+                direction={matchesSM ? "column" : "row"}
+                item 
+                alignItems="center"
+                style={{
+                    marginBottom: "15rem",
+                    marginTop: "15rem",
+                    textAlign: matchesSM ? "center" : "inherit"
+                }}>
                 <Grid item>
                     <Grid container direction="column">
                         <Grid item>
@@ -100,6 +111,118 @@ export const WebDev = function() {
                     </Typography>
                 </Grid>
             </Grid>
+            <Grid 
+                container 
+                direction={matchesSM ? "column" : "row"}
+                item 
+                alignItems="center"
+                justify="flex-end"
+                style={{
+                    marginBottom: "15rem",
+                    textAlign: matchesSM ? "center" : "inherit"
+                }}>
+                <Grid item>
+                    <Grid container direction="column">
+                        <Grid item>
+                            <Typography align="center" variant="h4" color="primary">
+                                 E-Commerce
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <img 
+                                src={ecommerce} 
+                                alt="ecommerce"
+                                />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item style={{
+                    maxWidth: "30rem",
+                    marginLeft: !matchesSM ? "1rem" : 0
+                }}>
+                    <Typography variant="body2" paragraph>
+                        It’s no secret that people like to shop online.
+                    </Typography>
+                    <Typography variant="body2">
+                       In 2017 over $2.3 trillion was spent in e-commerce, and it’s time for your slice of that pie.
+                    </Typography>
+                </Grid>
+            </Grid>
+            <Grid 
+                container 
+                direction={matchesSM ? "column" : "row"}
+                item 
+                alignItems="center"
+                style={{
+                    marginBottom: "15rem",
+                    textAlign: matchesSM ? "center" : "inherit"
+                }}>
+                <Grid item>
+                    <Grid container direction="column">
+                        <Grid item>
+                            <Typography variant="h4" color="primary">
+                            Outreach
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <img 
+                                src={outreach} 
+                                alt="outreach"
+                                />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item style={{
+                    maxWidth: "30rem",
+                    marginLeft: !matchesSM ? "1rem" : 0
+                }}>
+                    <Typography variant="body2">
+                       Draw people in with a dazzling website. Showing off your products online is a great way to help customers decide what’s right for them before visiting in person.
+                    </Typography>
+                </Grid>
+            </Grid>
+            <Grid 
+                container 
+                direction={matchesSM ? "column" : "row"}
+                style={{
+                    textAlign: matchesSM ? "center" : "inherit"
+                }}
+                item 
+                alignItems="center"
+                justify="flex-end">
+                <Grid item>
+                    <Grid container direction="column">
+                        <Grid item>
+                            <Typography align="center" variant="h4" color="primary">
+                                Search Engine <br />
+                                Optimization
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <img 
+                                src={seo} 
+                                alt="seo"
+                                />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item style={{
+                    maxWidth: "30rem",
+                    marginLeft: !matchesSM ? "1rem" : 0
+                }}>
+                    <Typography variant="body2" paragraph>
+                        How often have you ever been to the second page of Google results?
+                    </Typography>
+                    <Typography variant="body2">
+                      If you’re like us, probably never.
+                    </Typography>
+                    <Typography variant="body2">
+                       Customers don’t go there either, so we make sure your website is designed to end up on top.
+                    </Typography>
+                </Grid>
+            </Grid>
         </Grid>
+        <CallToAction />
+        </>
     )
 }
