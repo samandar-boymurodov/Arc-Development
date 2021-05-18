@@ -183,7 +183,11 @@ export const Revolution = function () {
                             maxWidth: "20rem"
                         }}>
                         <Grid item>
-                            <Typography variant="h4" style={{ color: "#000" }}>
+                            <Typography 
+                                variant="h4" 
+                                style={{
+                                     color: "#000",
+                                     marginTop: "5rem" }}>
                                 Consulation
                                 </Typography>
                         </Grid>
