@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.secondary.light,
     },
+
     marginRight: "5rem",
     [theme.breakpoints.down("md")]: {
       marginRight: 0,
@@ -78,6 +79,10 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.secondary.light,
     },
+    [theme.breakpoints.down("sm")]: {
+      height: 40,
+      width: 225,
+    },
     borderRadius: 50,
     width: 245,
     height: 45,
@@ -103,6 +108,7 @@ export const Contact = function () {
 
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const [open, setOpen] = useState(false);
 
   const formik = useFormik({
@@ -130,17 +136,12 @@ export const Contact = function () {
         xl={3}
         alignItems="center"
         style={{
-          marginTop: matchesMD ? "5rem" : 0,
-          marginBottom: matchesMD ? "5rem" : 0,
+          marginTop: matchesMD ? "1rem" : "5rem",
+          marginBottom: matchesMD ? "1rem" : "5rem",
         }}
       >
         {/*--- Form ---*/}
-        <Grid
-          item
-          style={{
-            marginTop: "5rem",
-          }}
-        >
+        <Grid item>
           <Grid item>
             <Typography
               variant="h2"
@@ -338,7 +339,34 @@ export const Contact = function () {
               </Button>
             </Grid>
             {/*---Dialog---*/}
-            <Dialog open={open} onClose={() => setOpen(false)}>
+            <Dialog
+              open={open}
+              onClose={() => setOpen(false)}
+              fullScreen={matchesXS}
+              style={{
+                zIndex: 1302,
+              }}
+              PaperProps={{
+                style: {
+                  paddingLeft: matchesXS
+                    ? 0
+                    : matchesSM
+                    ? "5rem"
+                    : matchesMD
+                    ? "10rem"
+                    : "20rem",
+                  paddingRight: matchesXS
+                    ? 0
+                    : matchesSM
+                    ? "5rem"
+                    : matchesMD
+                    ? "10rem"
+                    : "20rem",
+                  paddingTop: matchesXS ? 0 : matchesMD ? "2rem" : "5rem",
+                  paddingBottom: matchesXS ? 0 : matchesMD ? "2rem" : "5rem",
+                },
+              }}
+            >
               <DialogContent>
                 <Grid
                   container
@@ -347,7 +375,12 @@ export const Contact = function () {
                   onSubmit={formik.handleSubmit}
                 >
                   <Grid item>
-                    <Typography variant="h4" color="primary" gutterBottom>
+                    <Typography
+                      variant="h4"
+                      color="primary"
+                      gutterBottom
+                      align="center"
+                    >
                       Confirm Message
                     </Typography>
                   </Grid>
@@ -438,7 +471,17 @@ export const Contact = function () {
                       />
                     </Grid>
                   </Grid>
-                  <Grid item container>
+                  <Grid
+                    item
+                    container
+                    direction={matchesXS ? "row" : matchesSM ? "column" : "row"}
+                    style={{
+                      marginTop: "2rem",
+                      fontWeight: 300,
+                    }}
+                    justify={matchesXS ? "space-around" : undefined}
+                    alignItems="center"
+                  >
                     <Grid item>
                       <Button color="primary" onClick={() => setOpen(false)}>
                         Cancel
