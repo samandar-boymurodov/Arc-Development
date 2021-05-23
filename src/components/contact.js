@@ -5,6 +5,8 @@ import {
   TextField,
   useMediaQuery,
   Button,
+  Dialog,
+  DialogContent,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { useFormik } from "formik";
@@ -101,6 +103,7 @@ export const Contact = function () {
 
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const [open, setOpen] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -111,7 +114,10 @@ export const Contact = function () {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      setOpen(true);
+      if (open) {
+        console.log(values);
+      }
     },
   });
   return (
@@ -331,9 +337,135 @@ export const Contact = function () {
                 />
               </Button>
             </Grid>
+            {/*---Dialog---*/}
+            <Dialog open={open} onClose={() => setOpen(false)}>
+              <DialogContent>
+                <Grid
+                  container
+                  direction="column"
+                  component="form"
+                  onSubmit={formik.handleSubmit}
+                >
+                  <Grid item>
+                    <Typography variant="h4" color="primary" gutterBottom>
+                      Confirm Message
+                    </Typography>
+                  </Grid>
+                  <Grid item container direction="column">
+                    <Grid item>
+                      <TextField
+                        label="Name"
+                        style={{
+                          marginBottom: "0.5rem",
+                        }}
+                        id="name2"
+                        name="name"
+                        autoComplete="off"
+                        value={formik.values.name}
+                        onChange={formik.handleChange}
+                        error={
+                          formik.touched.name && Boolean(formik.errors.name)
+                        }
+                        helperText={formik.touched.name && formik.errors.name}
+                        fullWidth
+                      />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        style={{
+                          marginBottom: "0.5rem",
+                        }}
+                        label="Email"
+                        fullWidth
+                        autoComplete="off"
+                        id="email2"
+                        name="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        error={
+                          formik.touched.email && Boolean(formik.errors.email)
+                        }
+                        helperText={formik.touched.email && formik.errors.email}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        label="Phone"
+                        style={{
+                          marginBottom: "0.5rem",
+                        }}
+                        autoComplete="off"
+                        id="phone2"
+                        name="phone"
+                        fullWidth
+                        value={formik.values.phone}
+                        onChange={formik.handleChange}
+                        error={
+                          formik.touched.phone && Boolean(formik.errors.phone)
+                        }
+                        helperText={formik.touched.phone && formik.errors.phone}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        rows={10}
+                        multiline
+                        fullWidth
+                        id="message2"
+                        name="message"
+                        name="message"
+                        value={formik.values.message}
+                        onChange={formik.handleChange}
+                        error={
+                          formik.touched.message &&
+                          Boolean(formik.errors.message)
+                        }
+                        helperText={
+                          formik.touched.message && formik.errors.message
+                        }
+                        InputProps={{
+                          disableUnderline: true,
+                          classes: {
+                            root:
+                              formik.touched.message && formik.errors.message
+                                ? classes.textAreaError
+                                : classes.textArea,
+                          },
+                        }}
+                        FormHelperTextProps={{
+                          classes: { root: classes.errorMessage },
+                        }}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid item container>
+                    <Grid item>
+                      <Button color="primary" onClick={() => setOpen(false)}>
+                        Cancel
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button
+                        variant="contained"
+                        className={classes.sendButton}
+                        type="submit"
+                      >
+                        Send Message
+                        <img
+                          src={sendIcon}
+                          alt="sendIcon"
+                          style={{ marginLeft: "1rem" }}
+                        />
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </DialogContent>
+            </Dialog>
           </Grid>
         </Grid>
       </Grid>
+
       <Grid
         item
         container
