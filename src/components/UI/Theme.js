@@ -72,6 +72,19 @@ export const Theme = createMuiTheme({
         color: "#1769aa",
       },
     },
-    MuiInput: {},
+    MuiInput: {
+      root: {
+        color: "#868686",
+        fontWeight: 300,
+      },
+      underline: {
+        "&::before": {
+          borderBottom: "2px solid #1769aa",
+        },
+        "&:hover:not($disabled):not($focused):not($error)::before": {
+          borderBottom: "2px solid #1769aa",
+        },
+      },
+    },
   },
 });

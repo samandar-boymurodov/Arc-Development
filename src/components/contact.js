@@ -9,6 +9,7 @@ import {
 import { makeStyles, useTheme } from "@material-ui/styles";
 
 import backImg from "../assets/background.jpg";
+import mobileBackImg from "../assets/mobileBackground.jpg";
 import phoneIcon from "../assets/phone.svg";
 import emailIcon from "../assets/email.svg";
 import sendIcon from "../assets/send.svg";
@@ -21,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     height: "60rem",
     backgroundRepeat: "no-repeat",
+    [theme.breakpoints.down("md")]: {
+      backgroundImage: `url(${mobileBackImg})`,
+    },
   },
   estimate: {
     ...theme.typography.estimate,
@@ -33,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.secondary.light,
     },
     marginRight: "5rem",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       marginRight: 0,
     },
   },
@@ -43,11 +47,29 @@ const useStyles = makeStyles((theme) => ({
     height: 35,
   },
   callContainer: {
-    marginLeft: "5rem",
-    [theme.breakpoints.down("sm")]: {
+    marginLeft: "3rem",
+    [theme.breakpoints.down("md")]: {
       marginLeft: "1.5rem",
       marginRight: "1.5rem",
     },
+  },
+  textArea: {
+    border: "2px solid #1769aa",
+    borderRadius: 5,
+    marginTop: "5rem",
+  },
+  textAreaPadding: {
+    padding: 5,
+  },
+  sendButton: {
+    ...theme.typography.estimate,
+    backgroundColor: theme.palette.secondary.main,
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.light,
+    },
+    borderRadius: 50,
+    width: 245,
+    height: 45,
   },
 }));
 
@@ -56,6 +78,7 @@ export const Contact = function () {
   const classes = useStyles();
 
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -64,111 +87,180 @@ export const Contact = function () {
 
   return (
     <Grid container>
-      <Grid item container direction="column" lg={3}>
+      <Grid
+        item
+        container
+        direction="column"
+        lg={4}
+        xl={3}
+        alignItems="center"
+        style={{
+          marginTop: matchesMD ? "5rem" : 0,
+          marginBottom: matchesMD ? "5rem" : 0,
+        }}
+      >
         {/*--- Form ---*/}
         <Grid item>
-          <Typography variant="h2" color="primary">
-            Contact Us
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Typography
-            variant="body2"
-            style={{ color: theme.palette.primary.main }}
-          >
-            We're waiting.
-          </Typography>
-        </Grid>
-        <Grid item container direction="column">
-          <Grid item container>
+          <Grid item>
+            <Typography
+              variant="h2"
+              color="primary"
+              align={matchesMD ? "center" : undefined}
+              style={{
+                lineHeight: 1,
+              }}
+            >
+              Contact Us
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography
+              align={matchesMD ? "center" : undefined}
+              variant="body2"
+              style={{ color: theme.palette.primary.main }}
+            >
+              We're waiting.
+            </Typography>
+          </Grid>
+          <Grid item container direction="column">
+            <Grid
+              item
+              container
+              style={{
+                marginTop: "2rem",
+              }}
+            >
+              <Grid item>
+                <img
+                  src={phoneIcon}
+                  alt="phone"
+                  style={{
+                    marginRight: "0.5rem",
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                <Typography
+                  variant="body2"
+                  color="primary"
+                  style={{ fontSize: "1rem" }}
+                >
+                  +99897 888 15 10
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              container
+              style={{
+                marginBottom: "2rem",
+              }}
+            >
+              <Grid item>
+                <img
+                  src={emailIcon}
+                  alt="email"
+                  style={{
+                    marginRight: "0.5rem",
+                    verticalAlign: "middle",
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                <Typography
+                  style={{ fontSize: "1rem" }}
+                  variant="body2"
+                  color="primary"
+                >
+                  boymurodovuzcoder@gmail.com
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          {/*--- Inputs & Button --- */}
+          <Grid item container style={{ maxWidth: "20rem" }} direction="column">
             <Grid item>
-              <img
-                src={phoneIcon}
-                alt="phone"
+              <TextField
+                label="Name"
                 style={{
-                  marginRight: "0.5rem",
+                  marginBottom: "0.5rem",
                 }}
+                id="name"
+                autoComplete="off"
+                value={name}
+                fullWidth
+                onChange={(e) => setName(e.target.value)}
               />
             </Grid>
             <Grid item>
-              <Typography
-                variant="body2"
-                color="primary"
-                style={{ fontSize: "1rem" }}
-              >
-                +99897 888 15 10
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item container>
-            <Grid item>
-              <img
-                src={emailIcon}
-                alt="email"
+              <TextField
                 style={{
-                  marginRight: "0.5rem",
-                  verticalAlign: "middle",
+                  marginBottom: "0.5rem",
                 }}
+                label="Email"
+                fullWidth
+                autoComplete="off"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item>
-              <Typography
-                style={{ fontSize: "1rem" }}
-                variant="body2"
-                color="primary"
-              >
-                boymurodovuzcoder@gmail.com
-              </Typography>
+              <TextField
+                label="Phone"
+                style={{
+                  marginBottom: "0.5rem",
+                }}
+                autoComplete="off"
+                id="phone"
+                fullWidth
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
             </Grid>
-          </Grid>
-        </Grid>
-        {/*--- Inputs & Button --- */}
-        <Grid item container>
-          <Grid item>
-            <TextField
-              label="Name"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              label="Email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              label="Phone"
-              id="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              rows={10}
-              multiline
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-          </Grid>
-          <Grid item>
-            <Button variant="contained">
-              Send Message
-              <img src={sendIcon} alt="sendIcon" />
-            </Button>
+            <Grid item>
+              <TextField
+                rows={10}
+                multiline
+                fullWidth
+                value={message}
+                className={classes.textArea}
+                InputProps={{
+                  disableUnderline: true,
+                  classes: {
+                    root: classes.textAreaPadding,
+                  },
+                }}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+            </Grid>
+            <Grid
+              item
+              container
+              justify="center"
+              style={{
+                marginTop: "2rem",
+              }}
+            >
+              <Button variant="contained" className={classes.sendButton}>
+                Send Message
+                <img
+                  src={sendIcon}
+                  alt="sendIcon"
+                  style={{ marginLeft: "1rem" }}
+                />
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
       <Grid
         item
         container
-        direction="row"
-        lg={9}
+        direction={matchesMD ? "column" : "row"}
+        justify={matchesMD ? "center" : undefined}
+        lg={8}
+        xl={9}
         className={classes.estimateBg}
         alignItems="center"
       >
@@ -176,7 +268,7 @@ export const Contact = function () {
         <Grid
           item
           style={{
-            textAlign: matchesSM ? "center" : undefined,
+            textAlign: matchesMD ? "center" : undefined,
           }}
           className={classes.callContainer}
         >
@@ -207,7 +299,7 @@ export const Contact = function () {
           <Button
             variant="contained"
             className={classes.estimate}
-            style={{ marginTop: matchesSM ? "2.5rem" : 0 }}
+            style={{ marginTop: matchesMD ? "2.5rem" : 0 }}
           >
             Free Estimate
           </Button>
