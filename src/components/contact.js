@@ -7,6 +7,8 @@ import {
   Button,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/styles";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 import backImg from "../assets/background.jpg";
 import mobileBackImg from "../assets/mobileBackground.jpg";
@@ -25,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       backgroundImage: `url(${mobileBackImg})`,
     },
+  },
+  errorMessage: {
+    marginBottom: "-1.5rem",
   },
   estimate: {
     ...theme.typography.estimate,
@@ -56,10 +61,14 @@ const useStyles = makeStyles((theme) => ({
   textArea: {
     border: "2px solid #1769aa",
     borderRadius: 5,
+    padding: 5,
     marginTop: "5rem",
   },
-  textAreaPadding: {
+  textAreaError: {
+    border: "2px solid #f44336",
+    borderRadius: 5,
     padding: 5,
+    marginTop: "5rem",
   },
   sendButton: {
     ...theme.typography.estimate,
@@ -73,6 +82,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const validationSchema = yup.object({
+  email: yup
+    .string("Enter your email")
+    .email("Enter a valid email")
+    .required("Email is required"),
+  name: yup.string("Enter your name").required("Name is required"),
+  message: yup.string("Enter a message").required("Message is required"),
+  phone: yup
+    .string("Enter your Phone Number")
+    .matches(/^\+?[0-9]{3}-?[0-9]{6,12}$/, "Phone Number is not valid")
+    .required("Phone Number is required"),
+});
+
 export const Contact = function () {
   const theme = useTheme();
   const classes = useStyles();
@@ -80,11 +102,18 @@ export const Contact = function () {
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
-
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      message: "",
+      name: "",
+      phone: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   return (
     <Grid container>
       <Grid
@@ -145,7 +174,15 @@ export const Contact = function () {
                   color="primary"
                   style={{ fontSize: "1rem" }}
                 >
-                  +99897 888 15 10
+                  <a
+                    href="tel:+99897 888 15 10"
+                    style={{
+                      textDecoration: "none",
+                      color: "inherit",
+                    }}
+                  >
+                    +99897 888 15 10
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -172,13 +209,28 @@ export const Contact = function () {
                   variant="body2"
                   color="primary"
                 >
-                  boymurodovuzcoder@gmail.com
+                  <a
+                    href="mailto:boymurodovuzcoder@gmail.com"
+                    style={{
+                      textDecoration: "none",
+                      color: "inherit",
+                    }}
+                  >
+                    boymurodovuzcoder@gmail.com
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
           </Grid>
           {/*--- Inputs & Button --- */}
-          <Grid item container style={{ maxWidth: "20rem" }} direction="column">
+          <Grid
+            component="form"
+            onSubmit={formik.handleSubmit}
+            item
+            container
+            style={{ maxWidth: "20rem" }}
+            direction="column"
+          >
             <Grid item>
               <TextField
                 label="Name"
@@ -186,10 +238,13 @@ export const Contact = function () {
                   marginBottom: "0.5rem",
                 }}
                 id="name"
+                name="name"
                 autoComplete="off"
-                value={name}
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+                helperText={formik.touched.name && formik.errors.name}
                 fullWidth
-                onChange={(e) => setName(e.target.value)}
               />
             </Grid>
             <Grid item>
@@ -201,8 +256,11 @@ export const Contact = function () {
                 fullWidth
                 autoComplete="off"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
               />
             </Grid>
             <Grid item>
@@ -213,9 +271,12 @@ export const Contact = function () {
                 }}
                 autoComplete="off"
                 id="phone"
+                name="phone"
                 fullWidth
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                value={formik.values.phone}
+                onChange={formik.handleChange}
+                error={formik.touched.phone && Boolean(formik.errors.phone)}
+                helperText={formik.touched.phone && formik.errors.phone}
               />
             </Grid>
             <Grid item>
@@ -223,15 +284,25 @@ export const Contact = function () {
                 rows={10}
                 multiline
                 fullWidth
-                value={message}
-                className={classes.textArea}
+                id="message"
+                name="message"
+                name="message"
+                value={formik.values.message}
+                onChange={formik.handleChange}
+                error={formik.touched.message && Boolean(formik.errors.message)}
+                helperText={formik.touched.message && formik.errors.message}
                 InputProps={{
                   disableUnderline: true,
                   classes: {
-                    root: classes.textAreaPadding,
+                    root:
+                      formik.touched.message && formik.errors.message
+                        ? classes.textAreaError
+                        : classes.textArea,
                   },
                 }}
-                onChange={(e) => setMessage(e.target.value)}
+                FormHelperTextProps={{
+                  classes: { root: classes.errorMessage },
+                }}
               />
             </Grid>
             <Grid
@@ -242,7 +313,11 @@ export const Contact = function () {
                 marginTop: "2rem",
               }}
             >
-              <Button variant="contained" className={classes.sendButton}>
+              <Button
+                variant="contained"
+                className={classes.sendButton}
+                type="submit"
+              >
                 Send Message
                 <img
                   src={sendIcon}
