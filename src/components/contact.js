@@ -129,7 +129,12 @@ export const Contact = function () {
         }}
       >
         {/*--- Form ---*/}
-        <Grid item>
+        <Grid
+          item
+          style={{
+            marginTop: "5rem",
+          }}
+        >
           <Grid item>
             <Typography
               variant="h2"
