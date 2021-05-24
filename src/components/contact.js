@@ -406,8 +406,8 @@ export const Contact = function () {
                     : matchesMD
                     ? "10rem"
                     : "20rem",
-                  paddingTop: matchesXS ? 0 : matchesMD ? "2rem" : "5rem",
-                  paddingBottom: matchesXS ? 0 : matchesMD ? "2rem" : "5rem",
+                  paddingTop: matchesXS ? 0 : matchesMD ? "2rem" : "3rem",
+                  paddingBottom: matchesXS ? 0 : matchesMD ? "2rem" : "3rem",
                 },
               }}
             >
