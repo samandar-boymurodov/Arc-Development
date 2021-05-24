@@ -7,6 +7,7 @@ import {
   Button,
   Dialog,
   DialogContent,
+  CircularProgress,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { useFormik } from "formik";
@@ -112,13 +113,22 @@ export const Contact = function () {
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const [open, setOpen] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const sendMessage = (values) => {
-    console.log(JSON.stringify(values));
+    setLoading(true);
     const url = "https://material-ui-arc-dev-default-rtdb.firebaseio.com/";
     axios
       .post(`${url}messages.json`, JSON.stringify(values))
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        setLoading(false);
+        setOpen(false);
+        formik.resetForm();
+        console.log(res.status);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
   };
 
   const formik = useFormik({
@@ -503,12 +513,18 @@ export const Contact = function () {
                         className={classes.sendButton}
                         type="submit"
                       >
-                        Send Message
-                        <img
-                          src={sendIcon}
-                          alt="sendIcon"
-                          style={{ marginLeft: "1rem" }}
-                        />
+                        {loading ? (
+                          <CircularProgress size={30} color="primary" />
+                        ) : (
+                          <>
+                            Send Message
+                            <img
+                              src={sendIcon}
+                              alt="sendIcon"
+                              style={{ marginLeft: "1rem" }}
+                            />
+                          </>
+                        )}
                       </Button>
                     </Grid>
                   </Grid>
