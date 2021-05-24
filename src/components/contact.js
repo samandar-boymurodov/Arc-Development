@@ -8,7 +8,9 @@ import {
   Dialog,
   DialogContent,
   CircularProgress,
+  Snackbar,
 } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -20,6 +22,10 @@ import phoneIcon from "../assets/phone.svg";
 import emailIcon from "../assets/email.svg";
 import sendIcon from "../assets/send.svg";
 import ButtonArrow from "./UI/ButtonArrow.js";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
   estimateBg: {
@@ -115,6 +121,12 @@ export const Contact = function () {
 
   const [loading, setLoading] = useState(false);
 
+  const [alert, setAlert] = useState({
+    type: "",
+    message: "",
+    open: false,
+  });
+
   const sendMessage = (values) => {
     setLoading(true);
     const url = "https://material-ui-arc-dev-default-rtdb.firebaseio.com/";
@@ -123,10 +135,22 @@ export const Contact = function () {
       .then((res) => {
         setLoading(false);
         setOpen(false);
+        setAlert({
+          ...alert,
+          open: true,
+          type: "success",
+          message: "Message sent successfully!",
+        });
         formik.resetForm();
         console.log(res.status);
       })
       .catch((err) => {
+        setAlert({
+          ...alert,
+          open: true,
+          type: "error",
+          message: "Something went wrong, please try again",
+        });
         setLoading(false);
       });
   };
@@ -531,6 +555,22 @@ export const Contact = function () {
                 </Grid>
               </DialogContent>
             </Dialog>
+            <Snackbar
+              open={alert.open}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+              autoHideDuration={4000}
+              onClose={() =>
+                setAlert({
+                  ...alert,
+                  open: false,
+                })
+              }
+            >
+              <Alert severity={alert.type}>{alert.message}</Alert>
+            </Snackbar>
           </Grid>
         </Grid>
       </Grid>
