@@ -11,6 +11,7 @@ import {
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import axios from "axios";
 
 import backImg from "../assets/background.jpg";
 import mobileBackImg from "../assets/mobileBackground.jpg";
@@ -111,6 +112,15 @@ export const Contact = function () {
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const [open, setOpen] = useState(false);
 
+  const sendMessage = (values) => {
+    console.log(JSON.stringify(values));
+    const url = "https://material-ui-arc-dev-default-rtdb.firebaseio.com/";
+    axios
+      .post(`${url}messages.json`, JSON.stringify(values))
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -122,7 +132,7 @@ export const Contact = function () {
     onSubmit: (values) => {
       setOpen(true);
       if (open) {
-        console.log(values);
+        sendMessage(values);
       }
     },
   });
