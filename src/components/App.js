@@ -10,6 +10,7 @@ import { WebDev } from "./WebDev";
 import { Revolution } from "./Revolution";
 import { About } from "./About";
 import { Contact } from "./contact.js";
+import { Estimate } from "./Estimate.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { Links } from "./Utils/Links";
@@ -34,11 +35,7 @@ function App() {
           <Route exact path={Links.revolution} component={Revolution} />
           <Route exact path={Links.about} component={About} />
           <Route exact path={Links.contact} component={Contact} />
-          <Route
-            exact
-            path={Links.estimate}
-            component={() => <div>estimate</div>}
-          />
+          <Route exact path={Links.estimate} component={Estimate} />
           <Route exact path={Links.customsofware} component={CustomSofware} />
           <Route exact path={Links.mobiledevelopment} component={MobileApps} />
           <Route exact path={Links.websitedevelopment} component={WebDev} />
