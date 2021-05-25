@@ -5,6 +5,7 @@ import {
   IconButton,
   useMediaQuery,
 } from "@material-ui/core";
+import React from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import Lottie from "react-lottie";
 
@@ -63,6 +64,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const defaultQuestions = [
+  {
+    id: 1,
+    title: "Which service are you interested in",
+    subtitle: "",
+    active: true,
+    options: [
+      {
+        id: 1,
+        title: "Custom Software Development",
+        caption: "",
+        icons: software,
+        alt: "software",
+        const: 0,
+        selected: false,
+      },
+      {
+        id: 2,
+        title: "IOS/Android App Development",
+        caption: "",
+        icons: mobile,
+        alt: "mobile",
+        const: 0,
+        selected: false,
+      },
+      {
+        id: 3,
+        title: "Website Development",
+        caption: "",
+        icons: website,
+        alt: "website",
+        const: 0,
+        selected: false,
+      },
+    ],
+  },
+];
+
 export const Estimate = function () {
   const classes = useStyles();
   const theme = useTheme();
@@ -103,67 +142,69 @@ export const Estimate = function () {
           marginBottom: "25rem",
         }}
       >
-        <Grid
-          item
-          style={{
-            marginTop: "5rem",
-            marginBottom: "2.5rem",
-          }}
-        >
-          <Typography
-            gutterBottom
-            variant="h2"
-            color="primary"
-            style={{ fontWeight: 500, fontSize: "2.25rem" }}
-            align="center"
-          >
-            Which service are you interested in?
-          </Typography>
-        </Grid>
-        <Grid item container>
-          <Grid item container direction="column" md>
-            <Grid item style={{ maxWidth: "12rem" }}>
-              <Typography
-                variant="h6"
-                align="center"
-                style={{ marginBottom: "1rem" }}
+        {defaultQuestions
+          .filter((q) => q.active)
+          .map((question, index) => (
+            <React.Fragment key={index}>
+              <Grid
+                item
+                style={{
+                  marginTop: "5rem",
+                }}
               >
-                Cusom Sofware Development
-              </Typography>
-            </Grid>
-            <Grid item>
-              <img src={software} className={classes.icon} />
-            </Grid>
-          </Grid>
-          <Grid item container direction="column" md>
-            <Grid item style={{ maxWidth: "12rem" }}>
-              <Typography
-                variant="h6"
-                align="center"
-                style={{ marginBottom: "1rem" }}
-              >
-                IOS/Android App Development
-              </Typography>
-            </Grid>
-            <Grid item>
-              <img src={mobile} className={classes.icon} />
-            </Grid>
-          </Grid>
-          <Grid item container direction="column" md>
-            <Grid item style={{ maxWidth: "12rem" }}>
-              <Typography
-                variant="h6"
-                align="center"
-                style={{ marginBottom: "1rem" }}
-              >
-                Website Development
-              </Typography>
-            </Grid>
-            <Grid item>
-              <img src={website} className={classes.icon} />
-            </Grid>
-          </Grid>
-        </Grid>
+                <Typography
+                  variant="h2"
+                  color="primary"
+                  style={{ fontWeight: 500, fontSize: "2.25rem" }}
+                  align="center"
+                >
+                  {question.title}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography
+                  variant="body2"
+                  gutterBottom
+                  style={{ marginBottom: "2.5rem" }}
+                  align="center"
+                >
+                  {question.subtitle}
+                </Typography>
+              </Grid>
+              <Grid item container>
+                {question.options.map((option, index) => (
+                  <Grid item container direction="column" md>
+                    <Grid
+                      item
+                      container
+                      direction="column"
+                      alignItems="center"
+                      style={{ maxWidth: "12rem" }}
+                    >
+                      <Grid item>
+                        <Typography variant="h6" align="center">
+                          {option.title}
+                        </Typography>
+                      </Grid>
+                      <Grid item style={{ marginBottom: "1rem" }}>
+                        <Typography variant="caption" color="textSecondary">
+                          {option.caption}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid item>
+                      <img
+                        src={option.icons}
+                        className={classes.icon}
+                        alt={option.alt}
+                      />
+                    </Grid>
+                  </Grid>
+                ))}
+              </Grid>
+            </React.Fragment>
+          ))}
+
         <Grid
           item
           container
