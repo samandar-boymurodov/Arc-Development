@@ -8,6 +8,7 @@ import {
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import Lottie from "react-lottie";
+import cloneDeep from "lodash";
 
 // Images import
 import check from "../assets/check.svg";
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 const defaultQuestions = [
   {
     id: 1,
-    title: "Which service are you interested in",
+    title: "Which service are you interested in?",
     subtitle: "",
     active: true,
     options: [
@@ -106,17 +107,29 @@ export const Estimate = function () {
   const classes = useStyles();
   const theme = useTheme();
 
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Grid container>
-      <Grid item container direction="column" lg>
+      <Grid
+        item
+        container
+        direction="column"
+        lg
+        alignItems={matchesMD ? "center" : undefined}
+      >
         <Grid
           item
           style={{
-            marginLeft: "5rem",
+            marginLeft: matchesMD ? 0 : "5rem",
             marginTop: "2rem",
           }}
         >
-          <Typography variant="h2" color="primary">
+          <Typography
+            variant="h2"
+            color="primary"
+            align={matchesMD ? "center" : undefined}
+          >
             Estimate
           </Typography>
         </Grid>
@@ -125,7 +138,7 @@ export const Estimate = function () {
           style={{
             marginTop: "7.5rem",
             maxWidth: "50rem",
-            marginRight: "10rem",
+            marginRight: matchesMD ? 0 : "10rem",
           }}
         >
           <Lottie options={defaultOptions} height="100%" width="100%" />
@@ -138,7 +151,7 @@ export const Estimate = function () {
         alignItems="center"
         lg
         style={{
-          marginRight: "2rem",
+          marginRight: matchesMD ? 0 : "2rem",
           marginBottom: "25rem",
         }}
       >
@@ -155,7 +168,12 @@ export const Estimate = function () {
                 <Typography
                   variant="h2"
                   color="primary"
-                  style={{ fontWeight: 500, fontSize: "2.25rem" }}
+                  style={{
+                    fontWeight: 500,
+                    fontSize: "2.25rem",
+                    marginRight: matchesSM ? "1rem" : undefined,
+                    marginLeft: matchesSM ? "1rem" : undefined,
+                  }}
                   align="center"
                 >
                   {question.title}
@@ -173,13 +191,24 @@ export const Estimate = function () {
               </Grid>
               <Grid item container>
                 {question.options.map((option, index) => (
-                  <Grid item container direction="column" md>
+                  <Grid
+                    item
+                    container
+                    direction="column"
+                    md
+                    component={Button}
+                    style={{
+                      display: "grid",
+                      marginBottom: matchesSM ? "1.5rem" : undefined,
+                      textTransform: "none",
+                    }}
+                  >
                     <Grid
                       item
                       container
                       direction="column"
                       alignItems="center"
-                      style={{ maxWidth: "12rem" }}
+                      style={{ maxWidth: "14rem" }}
                     >
                       <Grid item>
                         <Typography variant="h6" align="center">
