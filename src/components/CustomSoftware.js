@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import Lottie from "react-lottie";
 import { CallToAction } from "./UI/CallToAction";
+import { useEffect } from "react";
 
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
@@ -82,6 +83,15 @@ export const CustomSofware = function () {
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = "Custom Software Development | Arc Development";
+    return () => {
+      document.title = prevTitle;
+    };
+  }, []);
+
   return (
     <>
       <Grid container direction="column" className={classes.mainContainer}>

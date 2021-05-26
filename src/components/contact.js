@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Grid,
   Typography,
@@ -170,6 +170,14 @@ export const Contact = function () {
       }
     },
   });
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = "Contact Us | Arc Development";
+    return () => {
+      document.title = prevTitle;
+    };
+  }, []);
+
   return (
     <Grid container>
       <Grid

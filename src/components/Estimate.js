@@ -9,6 +9,7 @@ import React from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import Lottie from "react-lottie";
 import cloneDeep from "lodash";
+import { useEffect } from "react";
 
 // Images import
 import check from "../assets/check.svg";
@@ -109,6 +110,15 @@ export const Estimate = function () {
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = "Free Custom Software Estimate | Arc Development";
+    return () => {
+      document.title = prevTitle;
+    };
+  }, []);
+
   return (
     <Grid container>
       <Grid
@@ -192,6 +202,7 @@ export const Estimate = function () {
               <Grid item container>
                 {question.options.map((option, index) => (
                   <Grid
+                    key={index}
                     item
                     container
                     direction="column"

@@ -5,6 +5,7 @@ import {
   Avatar,
   Hidden,
 } from "@material-ui/core";
+import { useEffect } from "react";
 import { useTheme, makeStyles } from "@material-ui/styles";
 import history from "../assets/history.svg";
 
@@ -49,6 +50,13 @@ export const About = function () {
   const theme = useTheme();
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = "About Us | Arc Development";
+    return () => {
+      document.title = prevTitle;
+    };
+  }, []);
   return (
     <Grid container direction="column">
       <Grid item className={classes.rowContainer}>
