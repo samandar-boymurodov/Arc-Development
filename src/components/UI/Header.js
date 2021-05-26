@@ -365,23 +365,23 @@ export default function Header({ tab, setTab, serviceOp, setServiceOp }) {
             >
               <style>{`.st0{fill:none}.st1{fill:#fff}.st2{font-family:Raleway; font-weight: 100;}.st6{fill:none;stroke:#000;stroke-width:3;stroke-miterlimit:10}`}</style>
               <path d="M448.07-1l-9.62 17.24-8.36 14.96L369.93 139H-1V-1z" />
-              <path class="st0" d="M-1 139h479.92v.01H-1z" />
+              <path className="st0" d="M-1 139h479.92v.01H-1z" />
               <text
                 transform="translate(261.994 65.233)"
-                class="st1 st2"
-                font-size="57"
+                className="st1 st2"
+                fontSize="57"
               >
                 Arc
               </text>
               <text
                 transform="translate(17.692 112.015)"
-                class="st1 st2"
-                font-size="54"
+                className="st1 st2"
+                fontSize="54"
               >
                 Development
               </text>
               <path
-                class="st0"
+                className="st0"
                 d="M382.44 116.43l47.65-85.23 8.36-14.96M369.83 139l-.01.01L362 153"
               />
               <path
@@ -394,14 +394,14 @@ export default function Header({ tab, setTab, serviceOp, setServiceOp }) {
                   <g id="Words">
                     <path
                       id="Path_59"
-                      class="st1"
+                      className="st1"
                       d="M405.05 14.4l-.09 80.38-7.67-.01.06-52.25-29.4 52.21-7.94-.01 45.04-80.32z"
                     />
                   </g>
                 </g>
               </g>
               <path
-                class="st0"
+                className="st0"
                 d="M457-17l-8.93 16-9.62 17.24-8.36 14.96L369.93 139l-.01.01L361 155"
               />
             </svg>
