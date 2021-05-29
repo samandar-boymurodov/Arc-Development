@@ -2,7 +2,7 @@ import { Grid, Typography, useMediaQuery } from "@material-ui/core";
 import Lottie from "react-lottie";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { CallToAction } from "./UI/CallToAction";
-import { useEffect } from "react";
+import { sections } from "./sections.js";
 
 import visionIcon from "../assets/vision.svg";
 import techAnimation from "../animations/technologyAnimation/data.json";
@@ -42,14 +42,6 @@ export const Revolution = function () {
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = "The Revolution - Cutting-Edge Sofware | Arc Development";
-    return () => {
-      document.title = prevTitle;
-    };
-  }, []);
-
   return (
     <>
       <Grid container direction="column">
@@ -221,15 +213,20 @@ export const Revolution = function () {
             </Typography>
           </Grid>
         </Grid>
-        <Grid
-          className={classes.mainContainer}
-          item
-          container
-          justify={matchesMD ? "center" : undefined}
-          style={{
-            backgroundColor: "#B3B3B3",
-            height: "90rem",
-          }}
+        {/* Consulation Section starts here */}
+        
+        {sections.map((section, index) => (
+         
+          <Grid
+            key={index}
+            className={classes.mainContainer}
+            item
+            container
+            justify={matchesMD ? "center" : undefined}
+            style={{
+              backgroundColor: section.backgroundColor.length > 8 ? eval(section.backgroundColor) : section.backgroundColor,
+              height: "90rem",
+            }}
         >
           <Grid
             container
@@ -248,520 +245,30 @@ export const Revolution = function () {
                   marginTop: "5rem",
                 }}
               >
-                Consultation
+                {section.title}
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Our process begins the moment you realize you need a piece of
-                technology for your business. Whether you already have an idea
-                for where to start and what to do, or if you just know you want
-                to step things up, our initial consultation will help you
-                examine your business holistically to find the best solutions.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Detailed notes will be taken on your requirements and
-                constraints, while taking care to identify other potential areas
-                for consideration.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Cutting-edge advancements in machine learning like object
-                detection and natural language processing allow computers to do
-                things previously unimaginable, and our expertise and intuition
-                will help usher you into this new future of possibilities.
-              </Typography>
+                {section.paragraphs.map((paragraph, index) => (
+                  <Typography variant="body2" key={index} paragraph style={{ color: "#fff" }}>
+                    {paragraph}
+                  </Typography>
+                ))}
             </Grid>
           </Grid>
           <Grid item lg container alignItems="center" justify="center">
             <img
-              src={handshake}
-              alt="handshake"
+              src={section.icon}
+              alt={section.iconAlt}
               width="100%"
               style={{
-                maxWidth: 600,
+                maxWidth: section.iconMaxWidth,
+                
               }}
             />
           </Grid>
         </Grid>
-        <Grid
-          className={classes.mainContainer}
-          item
-          container
-          justify={matchesMD ? "center" : undefined}
-          style={{
-            backgroundColor: "#FF7373",
-            height: "90rem",
-          }}
-        >
-          <Grid
-            container
-            direction="column"
-            lg
-            style={{
-              maxWidth: "20rem",
-              textAlign: matchesMD ? "center" : "inherit",
-            }}
-          >
-            <Grid item>
-              <Typography
-                variant="h4"
-                style={{
-                  color: "#000",
-                  marginTop: "5rem",
-                }}
-              >
-                Mockup
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                After we settle on the best path forward and decide on a
-                solution to pursue, details like the cost and timeline will be
-                finalized.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Then it’s time for us to start on your minimum viable product.
-                That’s just a fancy term for a mockup, which doesn’t include
-                colors, images, or any other polished design elements, but
-                captures the essential layout structure and functionality.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                This helps us understand and refine the solution itself before
-                getting distracted by specifics and looks.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item lg container alignItems="center" justify="center">
-            <img
-              src={mockup}
-              alt="handshake"
-              width="100%"
-              style={{
-                maxWidth: 600,
-              }}
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          className={classes.mainContainer}
-          item
-          container
-          justify={matchesMD ? "center" : undefined}
-          style={{
-            backgroundColor: "#39B54A",
-            height: "90rem",
-          }}
-        >
-          <Grid
-            container
-            direction="column"
-            lg
-            style={{
-              maxWidth: "20rem",
-              textAlign: matchesMD ? "center" : "inherit",
-            }}
-          >
-            <Grid item>
-              <Typography
-                variant="h4"
-                style={{
-                  color: "#000",
-                  marginTop: "5rem",
-                }}
-              >
-                Review
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Before moving any farther we come back to you with our progress.
-                This gives you the freedom to discuss any changes you may want
-                or any ideas you may have come up with before any heavy lifting
-                has been done.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                We give you an interactive demonstration of the mockups,
-                thoroughly explaining the thought process that went into each
-                screen and every anticipated feature.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Once you’re completely satisfied with the vision for our
-                solution we get down to the nitty gritty, fine-details of
-                design.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item lg container alignItems="center" justify="center">
-            <img
-              src={review}
-              alt="handshake"
-              width="100%"
-              style={{
-                maxWidth: 600,
-              }}
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          className={classes.mainContainer}
-          item
-          container
-          justify={matchesMD ? "center" : undefined}
-          style={{
-            backgroundColor: "#A67C52",
-            height: "90rem",
-          }}
-        >
-          <Grid
-            container
-            direction="column"
-            lg
-            style={{
-              maxWidth: "20rem",
-              textAlign: matchesMD ? "center" : "inherit",
-            }}
-          >
-            <Grid item>
-              <Typography
-                variant="h4"
-                style={{
-                  color: "#000",
-                  marginTop: "5rem",
-                }}
-              >
-                Design
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Before moving any farther we come back to you with our progress.
-                This gives you the freedom to discuss any changes you may want
-                or any ideas you may have come up with before any heavy lifting
-                has been done.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                We give you an interactive demonstration of the mockups,
-                thoroughly explaining the thought process that went into each
-                screen and every anticipated feature.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Once you’re completely satisfied with the vision for our
-                solution we get down to the nitty gritty, fine-details of
-                design.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item lg container alignItems="center" justify="center">
-            <img
-              src={design}
-              alt="handshake"
-              width="100%"
-              style={{
-                maxWidth: 600,
-              }}
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          className={classes.mainContainer}
-          item
-          container
-          justify={matchesMD ? "center" : undefined}
-          style={{
-            backgroundColor: "#39B54A",
-            height: "90rem",
-          }}
-        >
-          <Grid
-            container
-            direction="column"
-            lg
-            style={{
-              maxWidth: "20rem",
-              textAlign: matchesMD ? "center" : "inherit",
-            }}
-          >
-            <Grid item>
-              <Typography
-                variant="h4"
-                style={{
-                  color: "#000",
-                  marginTop: "5rem",
-                }}
-              >
-                Review
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Before moving any farther we come back to you with our progress.
-                This gives you the freedom to discuss any changes you may want
-                or any ideas you may have come up with before any heavy lifting
-                has been done.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                We give you an interactive demonstration of the mockups,
-                thoroughly explaining the thought process that went into each
-                screen and every anticipated feature.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Once you’re completely satisfied with the vision for our
-                solution we get down to the nitty gritty, fine-details of
-                design.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item lg container alignItems="center" justify="center">
-            <img
-              src={review}
-              alt="handshake"
-              width="100%"
-              style={{
-                maxWidth: 600,
-              }}
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          className={classes.mainContainer}
-          item
-          container
-          justify={matchesMD ? "center" : undefined}
-          style={{
-            backgroundColor: "#FBB03B",
-            height: "90rem",
-          }}
-        >
-          <Grid
-            container
-            direction="column"
-            lg
-            style={{
-              maxWidth: "20rem",
-              textAlign: matchesMD ? "center" : "inherit",
-            }}
-          >
-            <Grid item>
-              <Typography
-                variant="h4"
-                style={{
-                  color: "#000",
-                  marginTop: "5rem",
-                }}
-              >
-                Build
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Before moving any farther we come back to you with our progress.
-                This gives you the freedom to discuss any changes you may want
-                or any ideas you may have come up with before any heavy lifting
-                has been done.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                We give you an interactive demonstration of the mockups,
-                thoroughly explaining the thought process that went into each
-                screen and every anticipated feature.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Once you’re completely satisfied with the vision for our
-                solution we get down to the nitty gritty, fine-details of
-                design.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item lg container alignItems="center" justify="center">
-            <img
-              src={build}
-              alt="handshake"
-              width="100%"
-              style={{
-                maxWidth: 600,
-              }}
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          className={classes.mainContainer}
-          item
-          container
-          justify={matchesMD ? "center" : undefined}
-          style={{
-            backgroundColor: "#C1272D",
-            height: "90rem",
-          }}
-        >
-          <Grid
-            container
-            direction="column"
-            lg
-            style={{
-              maxWidth: "20rem",
-              textAlign: matchesMD ? "center" : "inherit",
-            }}
-          >
-            <Grid item>
-              <Typography
-                variant="h4"
-                style={{
-                  color: "#000",
-                  marginTop: "5rem",
-                }}
-              >
-                Launch
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Before moving any farther we come back to you with our progress.
-                This gives you the freedom to discuss any changes you may want
-                or any ideas you may have come up with before any heavy lifting
-                has been done.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                We give you an interactive demonstration of the mockups,
-                thoroughly explaining the thought process that went into each
-                screen and every anticipated feature.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Once you’re completely satisfied with the vision for our
-                solution we get down to the nitty gritty, fine-details of
-                design.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item lg container alignItems="center" justify="center">
-            <img
-              src={launch}
-              alt="handshake"
-              width="100%"
-              style={{
-                maxWidth: matchesMD ? 100 : 200,
-              }}
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          className={classes.mainContainer}
-          item
-          container
-          justify={matchesMD ? "center" : undefined}
-          style={{
-            backgroundColor: "#8E45CE",
-            height: "90rem",
-          }}
-        >
-          <Grid
-            container
-            direction="column"
-            lg
-            style={{
-              maxWidth: "20rem",
-              textAlign: matchesMD ? "center" : "inherit",
-            }}
-          >
-            <Grid item>
-              <Typography
-                variant="h4"
-                style={{
-                  color: "#000",
-                  marginTop: "5rem",
-                }}
-              >
-                Maintain
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Before moving any farther we come back to you with our progress.
-                This gives you the freedom to discuss any changes you may want
-                or any ideas you may have come up with before any heavy lifting
-                has been done.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                We give you an interactive demonstration of the mockups,
-                thoroughly explaining the thought process that went into each
-                screen and every anticipated feature.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Once you’re completely satisfied with the vision for our
-                solution we get down to the nitty gritty, fine-details of
-                design.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item lg container alignItems="center" justify="center">
-            <img
-              src={maintain}
-              alt="handshake"
-              width="100%"
-              style={{
-                maxWidth: matchesMD ? 300 : 500,
-              }}
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          className={classes.mainContainer}
-          item
-          container
-          justify={matchesMD ? "center" : undefined}
-          style={{
-            backgroundColor: "#29ABE2",
-            height: "90rem",
-          }}
-        >
-          <Grid
-            container
-            direction="column"
-            lg
-            style={{
-              maxWidth: "20rem",
-              textAlign: matchesMD ? "center" : "inherit",
-            }}
-          >
-            <Grid item>
-              <Typography
-                variant="h4"
-                style={{
-                  color: "#000",
-                  marginTop: "5rem",
-                }}
-              >
-                Iterate
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Before moving any farther we come back to you with our progress.
-                This gives you the freedom to discuss any changes you may want
-                or any ideas you may have come up with before any heavy lifting
-                has been done.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                We give you an interactive demonstration of the mockups,
-                thoroughly explaining the thought process that went into each
-                screen and every anticipated feature.
-              </Typography>
-              <Typography variant="body2" paragraph style={{ color: "#fff" }}>
-                Once you’re completely satisfied with the vision for our
-                solution we get down to the nitty gritty, fine-details of
-                design.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item lg container alignItems="center" justify="center">
-            <img
-              src={iterate}
-              alt="handshake"
-              width="100%"
-              style={{
-                maxWidth: 1000,
-              }}
-            />
-          </Grid>
-        </Grid>
+        ))}
       </Grid>
 
       <CallToAction />
