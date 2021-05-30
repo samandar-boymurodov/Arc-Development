@@ -2,7 +2,6 @@ import Lottie from "react-lottie";
 import {
   Grid,
   Typography,
-  Button,
   Hidden,
   useMediaQuery,
   IconButton,

@@ -25,7 +25,6 @@ import {
   ExpansionPanelDetails,
 } from "@material-ui/core";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import logo from "../../assets/logo.svg";
 import { Links } from "../Utils/Links";
 import { serviceMenuOptions } from "../Utils/serviceMenuOptions";
 
@@ -147,7 +146,6 @@ export default function Header({ tab, setTab, serviceOp, setServiceOp }) {
 
   const history = useHistory();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("md"));
 
   const changeTabHandler = (e, tabIndex) => {
     setTab(tabIndex);

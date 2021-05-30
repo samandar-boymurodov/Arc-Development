@@ -6,14 +6,6 @@ import { sections } from "./sections.js";
 
 import visionIcon from "../assets/vision.svg";
 import techAnimation from "../animations/technologyAnimation/data.json";
-import handshake from "../assets/consultationIcon.svg";
-import mockup from "../assets/mockupIcon.svg";
-import review from "../assets/reviewIcon.svg";
-import design from "../assets/designIcon.svg";
-import build from "../assets/buildIcon.svg";
-import launch from "../assets/launchIcon.svg";
-import maintain from "../assets/maintainIcon.svg";
-import iterate from "../assets/iterateIcon.svg";
 
 const defaultOptions = {
   loop: true,
@@ -214,9 +206,8 @@ export const Revolution = function () {
           </Grid>
         </Grid>
         {/* Consulation Section starts here */}
-        
+
         {sections.map((section, index) => (
-         
           <Grid
             key={index}
             className={classes.mainContainer}
@@ -224,50 +215,58 @@ export const Revolution = function () {
             container
             justify={matchesMD ? "center" : undefined}
             style={{
-              backgroundColor: section.backgroundColor.length > 8 ? eval(section.backgroundColor) : section.backgroundColor,
+              backgroundColor:
+                section.backgroundColor.length > 8
+                  ? eval(section.backgroundColor)
+                  : section.backgroundColor,
               height: "90rem",
             }}
-        >
-          <Grid
-            container
-            direction="column"
-            lg
-            style={{
-              maxWidth: "20rem",
-              textAlign: matchesMD ? "center" : "inherit",
-            }}
           >
-            <Grid item>
-              <Typography
-                variant="h4"
-                style={{
-                  color: "#000",
-                  marginTop: "5rem",
-                }}
-              >
-                {section.title}
-              </Typography>
-            </Grid>
-            <Grid item>
+            <Grid
+              item
+              container
+              direction="column"
+              lg
+              style={{
+                maxWidth: "20rem",
+                textAlign: matchesMD ? "center" : "inherit",
+              }}
+            >
+              <Grid item>
+                <Typography
+                  variant="h4"
+                  style={{
+                    color: "#000",
+                    marginTop: "5rem",
+                  }}
+                >
+                  {section.title}
+                </Typography>
+              </Grid>
+              <Grid item>
                 {section.paragraphs.map((paragraph, index) => (
-                  <Typography variant="body2" key={index} paragraph style={{ color: "#fff" }}>
+                  <Typography
+                    variant="body2"
+                    key={index}
+                    paragraph
+                    style={{ color: "#fff" }}
+                  >
                     {paragraph}
                   </Typography>
                 ))}
+              </Grid>
+            </Grid>
+            <Grid item lg container alignItems="center" justify="center">
+              <img
+                src={section.icon}
+                alt={section.iconAlt}
+                width="100%"
+                style={{
+                  maxWidth: section.iconMaxWidth,
+                }}
+              />
             </Grid>
           </Grid>
-          <Grid item lg container alignItems="center" justify="center">
-            <img
-              src={section.icon}
-              alt={section.iconAlt}
-              width="100%"
-              style={{
-                maxWidth: section.iconMaxWidth,
-                
-              }}
-            />
-          </Grid>
-        </Grid>
         ))}
       </Grid>
 
