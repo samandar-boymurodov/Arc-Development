@@ -259,7 +259,7 @@ export const Revolution = function () {
             </Grid>
             <Grid item lg container alignItems="center" justify="center">
               <LazyLoadImage
-                threshold={250}
+                threshold={750}
                 src={section.icon}
                 alt={section.iconAlt}
                 width="100%"
