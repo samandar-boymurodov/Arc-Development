@@ -19,8 +19,12 @@ import {
   ListItem,
   List,
   ListItemText,
+  Grid,
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
 } from "@material-ui/core";
-
+import ExpandMore from "@material-ui/icons/ExpandMore";
 import logo from "../../assets/logo.svg";
 import { Links } from "../Utils/Links";
 import { serviceMenuOptions } from "../Utils/serviceMenuOptions";
@@ -41,6 +45,25 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.modal + 1,
+  },
+  expanded: {
+    backgroundColor: theme.palette.primary.main,
+    borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+    "&.Mui-expanded": {
+      margin: 0,
+    },
+    "&:before": {
+      backgroundColor: "transparent",
+    },
+  },
+  exSummary: {
+    "&:hover": {
+      backgroundColor: "rgb(0, 0, 0, 0.04)",
+    },
+  },
+  expansioDetails: {
+    padding: 0,
+    paddingLeft: "16px",
   },
   barMargin: {
     ...theme.mixins.toolbar,
@@ -141,7 +164,6 @@ export default function Header({ tab, setTab, serviceOp, setServiceOp }) {
     setServiceOp(index);
   };
   React.useEffect(() => {
-    console.log(serviceOp, tab);
     switch (history.location.pathname) {
       case Links.home:
         setTab(0);
@@ -178,7 +200,7 @@ export default function Header({ tab, setTab, serviceOp, setServiceOp }) {
     }
   }, [setTab, history.location.pathname, serviceOp, setServiceOp, tab]);
 
-  const classes = useStyles();
+  const classes = useStyles(tab);
 
   const routes = [
     {
@@ -216,7 +238,7 @@ export default function Header({ tab, setTab, serviceOp, setServiceOp }) {
       >
         {routes.map((route, index) => (
           <Tab
-            key={index}
+            key={route.label + " " + index}
             className={classes.tab}
             label={route.label}
             component={Link}
@@ -299,27 +321,104 @@ export default function Header({ tab, setTab, serviceOp, setServiceOp }) {
       >
         <div className={classes.barMargin} />
         <List disablePadding>
-          {routes.map((route, index) => (
-            <ListItem
-              key={index}
-              divider
-              button
-              component={Link}
-              to={route.link}
-              onClick={(e) => {
-                setTab(index);
-                setDrawerOpen(false);
-                toggleDrawer(false)(e);
-              }}
-              selected={tab === index}
-              classes={{
-                selected: classes.drawerSelectedItem,
-                root: classes.drawerItem,
-              }}
-            >
-              <ListItemText disableTypography>{route.label}</ListItemText>
-            </ListItem>
-          ))}
+          {routes.map((route, index) =>
+            route.label === "Services" ? (
+              <ExpansionPanel
+                elevation={0}
+                classes={{ root: classes.expanded }}
+                key={route.label + " " + index * 5}
+              >
+                <ExpansionPanelSummary
+                  style={{
+                    backgroundColor:
+                      tab == 1 ? "rgba(0, 0, 0, 0.08)" : undefined,
+                  }}
+                  className={classes.exSummary}
+                  expandIcon={<ExpandMore color="secondary" />}
+                >
+                  <ListItemText
+                    onClick={(e) => {
+                      setTab(1);
+                      setDrawerOpen(false);
+                      setServiceOp(0);
+                      toggleDrawer(false)(e);
+                    }}
+                    className={classes.drawerItem}
+                    style={{ opacity: tab === 1 ? 1 : undefined }}
+                    disableTypography
+                  >
+                    <Link
+                      to={route.link}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {route.label}
+                    </Link>
+                  </ListItemText>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails
+                  classes={{ root: classes.expansioDetails }}
+                >
+                  <Grid container direction="column">
+                    {[
+                      ...serviceMenuOptions.slice(1, serviceMenuOptions.length),
+                    ].map((option, index) => (
+                      <Grid item key={option.name}>
+                        <ListItem
+                          divider={
+                            option.name === "Website Development" ? false : true
+                          }
+                          button
+                          component={Link}
+                          to={option.link}
+                          onClick={(e) => {
+                            setServiceOp(index + 1);
+                            setDrawerOpen(false);
+                            toggleDrawer(false)(e);
+                          }}
+                          selected={serviceOp === index + 1 && tab === 1}
+                          classes={{
+                            selected: classes.drawerSelectedItem,
+                            root: classes.drawerItem,
+                          }}
+                        >
+                          <ListItemText disableTypography>
+                            {option.name
+                              .split(" ")
+                              .filter((word) => word !== "Development")
+                              .join(" ")}
+                            <br />
+                            <span style={{ fontSize: "0.75rem" }}>
+                              Development
+                            </span>
+                          </ListItemText>
+                        </ListItem>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </ExpansionPanelDetails>
+              </ExpansionPanel>
+            ) : (
+              <ListItem
+                key={index}
+                divider
+                button
+                component={Link}
+                to={route.link}
+                onClick={(e) => {
+                  setTab(index);
+                  setDrawerOpen(false);
+                  toggleDrawer(false)(e);
+                }}
+                selected={tab === index}
+                classes={{
+                  selected: classes.drawerSelectedItem,
+                  root: classes.drawerItem,
+                }}
+              >
+                <ListItemText disableTypography>{route.label}</ListItemText>
+              </ListItem>
+            )
+          )}
           <ListItem
             divider
             button
