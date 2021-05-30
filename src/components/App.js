@@ -12,6 +12,7 @@ import { About } from "./About";
 import { Contact } from "./contact.js";
 import { Estimate } from "./Estimate.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Fonts from "./Utils/Fonts";
 
 import { Links } from "./Utils/Links";
 import { Footer } from "./UI/Footer";
@@ -20,6 +21,9 @@ function App() {
   const [tab, setTab] = React.useState(0);
   const [serviceOp, setServiceOp] = React.useState();
 
+  React.useEffect(() => {
+    Fonts();
+  }, [Fonts]);
   return (
     <ThemeProvider theme={Theme}>
       <BrowserRouter>
