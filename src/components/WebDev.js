@@ -14,6 +14,7 @@ import seo from "../assets/seo.svg";
 import outreach from "../assets/outreach.svg";
 import ecommerce from "../assets/ecommerce.svg";
 import { CallToAction } from "./UI/CallToAction";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -56,7 +57,7 @@ export const WebDev = function () {
           <Hidden mdDown>
             <Grid item className={classes.arrow}>
               <IconButton>
-                <img src={backArrow} alt="backArrow" />
+                <LazyLoadImage src={backArrow} alt="backArrow" />
               </IconButton>
             </Grid>
           </Hidden>
@@ -91,7 +92,7 @@ export const WebDev = function () {
           <Hidden mdDown>
             <Grid item className={classes.arrow}>
               <IconButton>
-                <img src={forwardArrow} alt="forwardArrow" />
+                <LazyLoadImage src={forwardArrow} alt="forwardArrow" />
               </IconButton>
             </Grid>
           </Hidden>
@@ -115,7 +116,7 @@ export const WebDev = function () {
                 </Typography>
               </Grid>
               <Grid item>
-                <img
+                <LazyLoadImage
                   src={analytics}
                   alt="analytics"
                   style={{
@@ -157,7 +158,7 @@ export const WebDev = function () {
                 </Typography>
               </Grid>
               <Grid item>
-                <img src={ecommerce} alt="ecommerce" />
+                <LazyLoadImage src={ecommerce} alt="ecommerce" />
               </Grid>
             </Grid>
           </Grid>
@@ -195,7 +196,7 @@ export const WebDev = function () {
                 </Typography>
               </Grid>
               <Grid item>
-                <img src={outreach} alt="outreach" />
+                <LazyLoadImage src={outreach} alt="outreach" />
               </Grid>
             </Grid>
           </Grid>
@@ -232,7 +233,7 @@ export const WebDev = function () {
                 </Typography>
               </Grid>
               <Grid item>
-                <img src={seo} alt="seo" />
+                <LazyLoadImage src={seo} alt="seo" />
               </Grid>
             </Grid>
           </Grid>

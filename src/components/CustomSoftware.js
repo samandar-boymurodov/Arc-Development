@@ -9,6 +9,7 @@ import {
 import Lottie from "react-lottie";
 import { CallToAction } from "./UI/CallToAction";
 import { useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
@@ -99,7 +100,7 @@ export const CustomSofware = function () {
           <Hidden mdDown>
             <Grid item className={classes.arrow}>
               <IconButton>
-                <img src={backArrow} alt="backArrow" />
+                <LazyLoadImage src={backArrow} alt="backArrow" />
               </IconButton>
             </Grid>
           </Hidden>
@@ -138,7 +139,7 @@ export const CustomSofware = function () {
           <Hidden mdDown>
             <Grid item className={classes.arrow}>
               <IconButton>
-                <img src={forwardArrow} alt="forwardArrow" />
+                <LazyLoadImage src={forwardArrow} alt="forwardArrow" />
               </IconButton>
             </Grid>
           </Hidden>
@@ -159,7 +160,7 @@ export const CustomSofware = function () {
               </Typography>
             </Grid>
             <Grid item>
-              <img src={bulb} alt="bulb" />
+              <LazyLoadImage src={bulb} alt="bulb" />
             </Grid>
           </Grid>
           <Grid
@@ -179,7 +180,7 @@ export const CustomSofware = function () {
               </Typography>
             </Grid>
             <Grid item>
-              <img src={stopwatch} alt="stopwatch" />
+              <LazyLoadImage src={stopwatch} alt="stopwatch" />
             </Grid>
           </Grid>
           <Grid item container md direction="column" alignItems="center">
@@ -189,7 +190,7 @@ export const CustomSofware = function () {
               </Typography>
             </Grid>
             <Grid item>
-              <img src={cash} alt="cash" />
+              <LazyLoadImage src={cash} alt="cash" />
             </Grid>
           </Grid>
         </Grid>
@@ -308,7 +309,7 @@ export const CustomSofware = function () {
             className={classes.textContainer}
           >
             <Grid item>
-              <img
+              <LazyLoadImage
                 height="450rem"
                 width={matchesSM ? "300rem" : "450rem"}
                 src={root}

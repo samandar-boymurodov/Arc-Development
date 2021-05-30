@@ -8,6 +8,7 @@ import {
 import { useEffect } from "react";
 import { useTheme, makeStyles } from "@material-ui/styles";
 import history from "../assets/history.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import profile from "../assets/founder.jpg";
 import yearBook from "../assets/yearbook.svg";
@@ -159,7 +160,7 @@ export const About = function () {
           </Grid>
         </Grid>
         <Grid item>
-          <img
+          <LazyLoadImage
             src={history}
             alt="history"
             style={{
@@ -237,7 +238,7 @@ export const About = function () {
           }}
         >
           <Grid item>
-            <img
+            <LazyLoadImage
               src={yearBook}
               alt="yearBook"
               style={{ maxWidth: matchesMD ? 300 : undefined }}
@@ -280,7 +281,7 @@ export const About = function () {
           alignItems={matchesMD ? "center" : "flex-end"}
         >
           <Grid item>
-            <img
+            <LazyLoadImage
               src={puppy}
               alt="puppy"
               style={{

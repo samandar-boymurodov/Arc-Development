@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import cusSofDevIcon from "../assets/Custom Software Icon.svg";
 import mobileDevIcon from "../assets/mobileIcon.svg";
 import websiteDevIcon from "../assets/websiteIcon.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const useStyles = makeStyles((theme) => ({
   firstBlockText: {
@@ -75,7 +76,7 @@ export const Services = function () {
       >
         <Grid
           item
-          xs={matches ? 12 : ""}
+          xs={matches ? 12 : undefined}
           className={classes.firstBlockText}
           style={{
             textAlign: matches ? "center" : undefined,
@@ -106,7 +107,8 @@ export const Services = function () {
           </Button>
         </Grid>
         <Grid item>
-          <img
+          <LazyLoadImage
+            threshold={400}
             src={mobileDevIcon}
             alt="icon"
             className={classes.icon}
@@ -124,7 +126,7 @@ export const Services = function () {
       >
         <Grid
           item
-          xs={matches ? 12 : ""}
+          xs={matches ? 12 : undefined}
           className={classes.firstBlockText}
           style={{ textAlign: matches ? "center" : undefined }}
         >
@@ -152,7 +154,12 @@ export const Services = function () {
           </Button>
         </Grid>
         <Grid item>
-          <img src={cusSofDevIcon} alt="icon" className={classes.icon} />
+          <LazyLoadImage
+            threshold={400}
+            src={cusSofDevIcon}
+            alt="icon"
+            className={classes.icon}
+          />
         </Grid>
       </Grid>
       {/* Website Dev */}
@@ -165,7 +172,7 @@ export const Services = function () {
       >
         <Grid
           item
-          xs={matches ? 12 : ""}
+          xs={matches ? 12 : undefined}
           className={classes.firstBlockText}
           style={{
             textAlign: matches ? "center" : undefined,
@@ -195,7 +202,8 @@ export const Services = function () {
           </Button>
         </Grid>
         <Grid item>
-          <img
+          <LazyLoadImage
+            threshold={400}
             src={websiteDevIcon}
             alt="icon"
             className={classes.icon}

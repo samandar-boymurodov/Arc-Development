@@ -1,6 +1,7 @@
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { Button, Grid, Typography, useMediaQuery } from "@material-ui/core";
 import ButtonArrow from "./ButtonArrow";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 import background from "../../assets/background.jpg";
 import mobileBackground from "../../assets/mobileBackground.jpg";
@@ -54,53 +55,55 @@ export const CallToAction = function () {
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Grid
-      container
-      className={classes.backImage}
-      style={{ height: "60rem" }}
-      alignItems="center"
-      justify={matchesSM ? "center" : "space-between"}
-      direction={matchesSM ? "column" : "row"}
-    >
+    <LazyLoadComponent threshold={350}>
       <Grid
-        item
-        style={{
-          textAlign: matchesSM ? "center" : undefined,
-        }}
-        className={classes.textContainer}
+        container
+        className={classes.backImage}
+        style={{ height: "60rem" }}
+        alignItems="center"
+        justify={matchesSM ? "center" : "space-between"}
+        direction={matchesSM ? "column" : "row"}
       >
-        <Grid container direction="column">
-          <Grid item>
-            <Typography variant="h2" color="primary">
-              Simple Software. <br /> Revolutionary Results.
-            </Typography>
-          </Grid>
-          <Grid>
-            <Typography variant="subtitle2" style={{ fontSize: "1.5rem" }}>
-              Take advantage of 21st Century.
-            </Typography>
-          </Grid>
-          <Grid>
-            <Button variant="outlined" className={classes.learnButton}>
-              <span style={{ marginRight: 10 }}>Learn more</span>
-              <ButtonArrow
-                height={10}
-                width={10}
-                fill={theme.palette.primary.main}
-              />
-            </Button>
+        <Grid
+          item
+          style={{
+            textAlign: matchesSM ? "center" : undefined,
+          }}
+          className={classes.textContainer}
+        >
+          <Grid container direction="column">
+            <Grid item>
+              <Typography variant="h2" color="primary">
+                Simple Software. <br /> Revolutionary Results.
+              </Typography>
+            </Grid>
+            <Grid>
+              <Typography variant="subtitle2" style={{ fontSize: "1.5rem" }}>
+                Take advantage of 21st Century.
+              </Typography>
+            </Grid>
+            <Grid>
+              <Button variant="outlined" className={classes.learnButton}>
+                <span style={{ marginRight: 10 }}>Learn more</span>
+                <ButtonArrow
+                  height={10}
+                  width={10}
+                  fill={theme.palette.primary.main}
+                />
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            className={classes.estimate}
+            style={{ marginTop: matchesSM ? "2.5rem" : 0 }}
+          >
+            Free Estimate
+          </Button>
+        </Grid>
       </Grid>
-      <Grid item>
-        <Button
-          variant="contained"
-          className={classes.estimate}
-          style={{ marginTop: matchesSM ? "2.5rem" : 0 }}
-        >
-          Free Estimate
-        </Button>
-      </Grid>
-    </Grid>
+    </LazyLoadComponent>
   );
 };

@@ -9,6 +9,7 @@ import {
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { CallToAction } from "./UI/CallToAction";
 import { useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
@@ -191,7 +192,7 @@ export const MobileApps = function () {
               </Typography>
             </Grid>
             <Grid item>
-              <img src={swiss} alt="swiss" />
+              <LazyLoadImage src={swiss} alt="swiss" />
             </Grid>
           </Grid>
           <Grid
@@ -211,7 +212,7 @@ export const MobileApps = function () {
               </Typography>
             </Grid>
             <Grid item>
-              <img
+              <LazyLoadImage
                 src={access}
                 style={{ maxWidth: matchesXS ? "18rem" : "28rem" }}
                 alt="access"
@@ -225,7 +226,7 @@ export const MobileApps = function () {
               </Typography>
             </Grid>
             <Grid item>
-              <img src={engagement} alt="engagement" />
+              <LazyLoadImage src={engagement} alt="engagement" />
             </Grid>
           </Grid>
         </Grid>

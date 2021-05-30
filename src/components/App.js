@@ -13,6 +13,7 @@ import { Contact } from "./contact.js";
 import { Estimate } from "./Estimate.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Fonts from "./Utils/Fonts";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 import { Links } from "./Utils/Links";
 import { Footer } from "./UI/Footer";
@@ -44,12 +45,14 @@ function App() {
           <Route exact path={Links.mobiledevelopment} component={MobileApps} />
           <Route exact path={Links.websitedevelopment} component={WebDev} />
         </Switch>
-        <Footer
-          tab={tab}
-          setTab={setTab}
-          serviceOp={serviceOp}
-          setServiceOp={setServiceOp}
-        />
+        <LazyLoadComponent threshold="400">
+          <Footer
+            tab={tab}
+            setTab={setTab}
+            serviceOp={serviceOp}
+            setServiceOp={setServiceOp}
+          />
+        </LazyLoadComponent>
       </BrowserRouter>
     </ThemeProvider>
   );

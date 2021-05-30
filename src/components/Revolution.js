@@ -3,6 +3,7 @@ import Lottie from "react-lottie";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { CallToAction } from "./UI/CallToAction";
 import { sections } from "./sections.js";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import visionIcon from "../assets/vision.svg";
 import techAnimation from "../animations/technologyAnimation/data.json";
@@ -57,7 +58,7 @@ export const Revolution = function () {
           direction={matchesMD ? "column" : "row"}
         >
           <Grid item lg>
-            <img
+            <LazyLoadImage
               src={visionIcon}
               alt="visionIcon"
               style={{
@@ -257,7 +258,8 @@ export const Revolution = function () {
               </Grid>
             </Grid>
             <Grid item lg container alignItems="center" justify="center">
-              <img
+              <LazyLoadImage
+                threshold={250}
                 src={section.icon}
                 alt={section.iconAlt}
                 width="100%"

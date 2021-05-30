@@ -9,6 +9,7 @@ import React from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import Lottie from "react-lottie";
 import { useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Images import
 import software from "../assets/software.svg";
@@ -213,7 +214,7 @@ export const Estimate = function () {
                       </Grid>
                     </Grid>
                     <Grid item>
-                      <img
+                      <LazyLoadImage
                         src={option.icons}
                         className={classes.icon}
                         alt={option.alt}

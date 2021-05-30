@@ -1,5 +1,9 @@
 import Lottie from "react-lottie";
 import animationData from "../animations/landinganimation/data";
+import {
+  LazyLoadImage,
+  LazyLoadComponent,
+} from "react-lazy-load-image-component";
 import { makeStyles } from "@material-ui/styles";
 import { useEffect } from "react";
 import ButtonArrow from "./UI/ButtonArrow";
@@ -220,7 +224,11 @@ export default function LandingPage() {
             </Button>
           </Grid>
           <Grid item>
-            <img src={cusSofDevIcon} alt="icon" className={classes.icon} />
+            <LazyLoadImage
+              src={cusSofDevIcon}
+              alt="icon"
+              className={classes.icon}
+            />
           </Grid>
         </Grid>
         {/* Mobile Dev */}
@@ -261,7 +269,11 @@ export default function LandingPage() {
             </Button>
           </Grid>
           <Grid item>
-            <img src={mobileDevIcon} alt="icon" className={classes.icon} />
+            <LazyLoadImage
+              src={mobileDevIcon}
+              alt="icon"
+              className={classes.icon}
+            />
           </Grid>
         </Grid>
         {/* Website Dev */}
@@ -301,7 +313,11 @@ export default function LandingPage() {
             </Button>
           </Grid>
           <Grid item>
-            <img src={websiteDevIcon} alt="icon" className={classes.icon} />
+            <LazyLoadImage
+              src={websiteDevIcon}
+              alt="icon"
+              className={classes.icon}
+            />
           </Grid>
         </Grid>
       </Grid>
@@ -347,7 +363,9 @@ export default function LandingPage() {
               </Grid>
             </CardContent>
           </Card>
-          <div className={classes.revolutionImg}></div>
+          <LazyLoadComponent threshold={800}>
+            <div className={classes.revolutionImg}></div>
+          </LazyLoadComponent>
         </Grid>
       </Grid>
 
@@ -429,7 +447,9 @@ export default function LandingPage() {
               </Grid>
             </Grid>
           </Grid>
-          <div className={classes.infoBlockImg}></div>
+          <LazyLoadComponent threshold={900}>
+            <div className={classes.infoBlockImg}></div>
+          </LazyLoadComponent>
         </Grid>
       </Grid>
 
